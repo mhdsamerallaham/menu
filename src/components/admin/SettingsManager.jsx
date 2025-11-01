@@ -11,6 +11,11 @@ export default function SettingsManager({ settings, onUpdate }) {
       ar: { enabled: false, label: 'العربية', flag: '🇸🇦' }
     },
     logo: '',
+    tagline: {
+      tr: '',
+      en: '',
+      ar: ''
+    },
     footer: {
       tr: { address: '', phone: '', email: '', hours: '' },
       en: { address: '', phone: '', email: '', hours: '' },
@@ -116,6 +121,76 @@ export default function SettingsManager({ settings, onUpdate }) {
               placeholder="+905XXXXXXXXX"
               autoComplete="off"
             />
+          </div>
+        </div>
+
+        {/* Homepage Tagline */}
+        <div className="p-6 bg-gradient-to-br from-sand-50 to-sage-50 rounded-2xl border border-sand-200/50">
+          <h3 className="text-xl font-light text-charcoal mb-6 tracking-tight">Ana Sayfa Slogan (Tagline)</h3>
+          <p className="text-sm text-charcoal/60 mb-6">Logo altında görünecek slogan metni</p>
+
+          {/* Turkish Tagline */}
+          <div className="space-y-4 mb-6 p-4 bg-white/50 rounded-xl">
+            <h4 className="text-sm font-medium text-charcoal/70">🇹🇷 Türkçe</h4>
+            <div>
+              <input
+                type="text"
+                value={formData.tagline?.tr || ''}
+                onChange={(e) => setFormData({
+                  ...formData,
+                  tagline: {
+                    ...formData.tagline,
+                    tr: e.target.value
+                  }
+                })}
+                className="w-full px-4 py-3 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-sm"
+                placeholder="Rüzgârın serinliği, kahvenin sıcaklığıyla buluştu"
+                autoComplete="off"
+              />
+            </div>
+          </div>
+
+          {/* English Tagline */}
+          <div className="space-y-4 mb-6 p-4 bg-white/50 rounded-xl">
+            <h4 className="text-sm font-medium text-charcoal/70">🇬🇧 English</h4>
+            <div>
+              <input
+                type="text"
+                value={formData.tagline?.en || ''}
+                onChange={(e) => setFormData({
+                  ...formData,
+                  tagline: {
+                    ...formData.tagline,
+                    en: e.target.value
+                  }
+                })}
+                className="w-full px-4 py-3 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-sm"
+                placeholder="Where the freshness of the wind meets the warmth of coffee"
+                autoComplete="off"
+              />
+            </div>
+          </div>
+
+          {/* Arabic Tagline */}
+          <div className="space-y-4 p-4 bg-white/50 rounded-xl">
+            <h4 className="text-sm font-medium text-charcoal/70">🇸🇦 العربية</h4>
+            <div>
+              <input
+                type="text"
+                value={formData.tagline?.ar || ''}
+                onChange={(e) => setFormData({
+                  ...formData,
+                  tagline: {
+                    ...formData.tagline,
+                    ar: e.target.value
+                  }
+                })}
+                className="w-full px-4 py-3 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-sm text-right"
+                placeholder="حيث تلتقي نضارة الرياح بدفء القهوة"
+                autoComplete="off"
+                dir="rtl"
+              />
+            </div>
           </div>
         </div>
 

@@ -1,12 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 import Header from '@/components/customer/Header'
 import CategoryList from '@/components/customer/CategoryList'
 import ProductCard from '@/components/customer/ProductCard'
 import Footer from '@/components/shared/Footer'
 
 export default function MenuPage() {
+  const { currentLanguage } = useLanguage()
   const [menuData, setMenuData] = useState({ categories: [], products: [] })
   const [activeCategory, setActiveCategory] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -32,12 +34,29 @@ export default function MenuPage() {
   const sortedProducts = [...filteredProducts].sort((a, b) => a.order - b.order)
   const sortedCategories = [...menuData.categories].sort((a, b) => a.order - b.order)
 
+  const translations = {
+    tr: {
+      loading: 'Menü yükleniyor...',
+      noProducts: 'Bu kategoride ürün bulunmuyor.'
+    },
+    en: {
+      loading: 'Loading menu...',
+      noProducts: 'No products in this category.'
+    },
+    ar: {
+      loading: 'جاري تحميل القائمة...',
+      noProducts: 'لا توجد منتجات في هذه الفئة.'
+    }
+  }
+
+  const t = translations[currentLanguage] || translations.tr
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-pearl">
         <div className="text-center">
           <div className="text-6xl mb-4">☕</div>
-          <p className="text-xl text-charcoal/60">Menü yükleniyor...</p>
+          <p className="text-xl text-charcoal/60">{t.loading}</p>
         </div>
       </div>
     )
@@ -94,8 +113,11 @@ export default function MenuPage() {
           </div>
           {sortedProducts.length === 0 && (
             <div className="text-center py-24">
-              <p className="text-xl text-charcoal/40">
-                Bu kategoride ürün bulunmuyor.
+              <p
+                className="text-xl text-charcoal/40"
+                style={{ direction: currentLanguage === 'ar' ? 'rtl' : 'ltr' }}
+              >
+                {t.noProducts}
               </p>
             </div>
           )}

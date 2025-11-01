@@ -20,6 +20,11 @@ export default function AdminPage() {
         ar: { enabled: false, label: 'العربية', flag: '🇸🇦' }
       },
       logo: '',
+      tagline: {
+        tr: '',
+        en: '',
+        ar: ''
+      },
       footer: {
         tr: { address: '', phone: '', email: '', hours: '' },
         en: { address: '', phone: '', email: '', hours: '' },

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useCart } from '@/contexts/CartContext'
+import CartSidebar from './CartSidebar'
 import { useState } from 'react'
 
 export default function Header() {
@@ -118,32 +119,11 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Cart Sidebar - We'll create this component next */}
-      {showCartSidebar && (
-        <div
-          className="fixed inset-0 bg-black/50 z-50"
-          onClick={() => setShowCartSidebar(false)}
-        >
-          <div
-            className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Cart content will be here */}
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-light text-charcoal">{t.cart}</h2>
-                <button
-                  onClick={() => setShowCartSidebar(false)}
-                  className="text-2xl text-charcoal/60 hover:text-charcoal"
-                >
-                  ×
-                </button>
-              </div>
-              <p className="text-charcoal/60">Sepet içeriği yakında...</p>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Cart Sidebar */}
+      <CartSidebar
+        isOpen={showCartSidebar}
+        onClose={() => setShowCartSidebar(false)}
+      />
     </header>
   )
 }

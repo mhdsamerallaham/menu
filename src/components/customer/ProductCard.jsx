@@ -11,12 +11,6 @@ export default function ProductCard({ product, gridClass }) {
   const { currentLanguage } = useLanguage()
   const { addToCart } = useCart()
 
-  const handleAddToCart = (e) => {
-    e.stopPropagation()
-    addToCart(product, 1)
-    alert('✅ Ürün sepete eklendi!')
-  }
-
   const productName = product.translations?.[currentLanguage]?.name || product.name || ''
   const productDescription = product.translations?.[currentLanguage]?.description || product.description || ''
 
@@ -24,21 +18,30 @@ export default function ProductCard({ product, gridClass }) {
     tr: {
       details: 'Detayları Gör',
       addToCart: 'Sepete Ekle',
-      outOfStock: 'Stokta Yok'
+      outOfStock: 'Stokta Yok',
+      addedToCart: '✅ Ürün sepete eklendi!'
     },
     en: {
       details: 'View Details',
       addToCart: 'Add to Cart',
-      outOfStock: 'Out of Stock'
+      outOfStock: 'Out of Stock',
+      addedToCart: '✅ Product added to cart!'
     },
     ar: {
       details: 'عرض التفاصيل',
       addToCart: 'أضف إلى السلة',
-      outOfStock: 'إنتهى من المخزن'
+      outOfStock: 'إنتهى من المخزن',
+      addedToCart: '✅ تمت إضافة المنتج إلى السلة!'
     }
   }
 
   const t = translations[currentLanguage] || translations.tr
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation()
+    addToCart(product, 1)
+    alert(t.addedToCart)
+  }
 
   return (
     <>

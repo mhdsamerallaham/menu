@@ -2,45 +2,50 @@
   "settings": {
     "languages": {
       "tr": { "enabled": true, "label": "Türkçe", "flag": "🇹🇷" },
-      "en": { "enabled": false, "label": "English", "flag": "🇬🇧" },
-      "ar": { "enabled": false, "label": "العربية", "flag": "🇸🇦" }
+      "en": { "enabled": true, "label": "English", "flag": "🇬🇧" },
+      "ar": { "enabled": true, "label": "العربية", "flag": "🇸🇦" }
     },
     "logo": "",
+    "tagline": {
+      "tr": "Rüzgârın serinliği, kahvenin sıcaklığıyla buluştu",
+      "en": "Where the freshness of the wind meets the warmth of coffee",
+      "ar": "حيث تلتقي نضارة الرياح بدفء القهوة"
+    },
     "footer": {
       "tr": {
-        "address": "Örnek Mahallesi, Cafe Sokak No: 123, İstanbul",
-        "phone": "+90 XXX XXX XX XX",
-        "email": "info@example.com",
+        "address": "Poyrazköy, Beykoz, İstanbul",
+        "phone": "+90 538 873 17 90",
+        "email": "info@poyrazkafe.com",
         "hours": "Pazartesi - Pazar: 08:00 - 23:00"
       },
       "en": {
-        "address": "Example Street No: 123, Istanbul",
-        "phone": "+90 XXX XXX XX XX",
-        "email": "info@example.com",
+        "address": "Poyrazköy, Beykoz, Istanbul",
+        "phone": "+90 538 873 17 90",
+        "email": "info@poyrazkafe.com",
         "hours": "Monday - Sunday: 08:00 - 23:00"
       },
       "ar": {
-        "address": "شارع المثال رقم ١٢٣، إسطنبول",
-        "phone": "+90 XXX XXX XX XX",
-        "email": "info@example.com",
+        "address": "بويراز كوي، بيكوز، إسطنبول",
+        "phone": "+90 538 873 17 90",
+        "email": "info@poyrazkafe.com",
         "hours": "الاثنين - الأحد: ٠٨:٠٠ - ٢٣:٠٠"
       }
     },
     "about": {
       "tr": {
         "title": "Hakkımızda",
-        "content": "Kaliteli kahve ve lezzetli yemekler sunarak müşterilerimize unutulmaz anlar yaşatıyoruz."
+        "content": "Poyraz Kafe olarak, Poyrazköy'ün eşsiz deniz manzarası eşliğinde misafirlerimize en kaliteli kahve deneyimini sunuyoruz. 2018'den bu yana, taze çekilmiş kahvelerimiz, ev yapımı lezzetlerimiz ve sıcak atmosferimizle İstanbul'un gizli cennetinde hizmet veriyoruz.\n\nBoğaz'ın serinliği ile kahvenin sıcaklığını birleştirerek, her fincanda bir hikaye sunuyoruz. Sabah kahvaltılarından akşam tatlılarına, her anınızı özel kılmak için buradayız."
       },
       "en": {
         "title": "About Us",
-        "content": "We create unforgettable moments for our customers by serving quality coffee and delicious food."
+        "content": "As Poyraz Cafe, we offer our guests the highest quality coffee experience accompanied by the unique sea view of Poyrazköy. Since 2018, we have been serving in Istanbul's hidden paradise with our freshly ground coffees, homemade delicacies and warm atmosphere.\n\nBy combining the freshness of the Bosphorus with the warmth of coffee, we present a story in every cup. From breakfast to evening desserts, we are here to make every moment special."
       },
       "ar": {
         "title": "معلومات عنا",
-        "content": "نخلق لحظات لا تنسى لعملائنا من خلال تقديم القهوة الجيدة والطعام اللذيذ."
+        "content": "كمقهى بويراز، نقدم لضيوفنا أفضل تجربة قهوة مصحوبة بإطلالة بحرية فريدة من بويراز كوي. منذ عام ٢٠١٨، نخدم في جنة إسطنبول المخفية بقهوتنا المطحونة الطازجة ومأكولاتنا المنزلية وأجوائنا الدافئة.\n\nمن خلال الجمع بين نضارة البوسفور ودفء القهوة، نقدم قصة في كل كوب. من الإفطار إلى حلويات المساء، نحن هنا لجعل كل لحظة مميزة."
       }
     },
-    "whatsappNumber": "+905XXXXXXXXX"
+    "whatsappNumber": "+905388731790"
   },
   "categories": [
     {
