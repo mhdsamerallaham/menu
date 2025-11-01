@@ -16,20 +16,135 @@ const ProductForm = React.memo(function ProductForm({
       <h3 className="text-xl font-light text-charcoal mb-6 tracking-tight">
         {editingId ? 'Ürün Düzenle' : 'Yeni Ürün Ekle'}
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div>
-          <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
-            Ürün Adı
-          </label>
-          <input
-            type="text"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
-            required
-            autoComplete="off"
-          />
+
+      <div className="space-y-6 mb-6">
+        {/* Turkish Name & Description */}
+        <div className="space-y-4 p-4 bg-white/50 rounded-xl">
+          <h4 className="text-sm font-medium text-charcoal/70">🇹🇷 Türkçe</h4>
+          <div>
+            <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
+              Ürün Adı
+            </label>
+            <input
+              type="text"
+              value={formData.translations?.tr?.name || ''}
+              onChange={(e) => setFormData({
+                ...formData,
+                translations: {
+                  ...formData.translations,
+                  tr: { ...formData.translations?.tr, name: e.target.value }
+                }
+              })}
+              className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
+              required
+              autoComplete="off"
+            />
+          </div>
+          <div>
+            <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">Açıklama</label>
+            <textarea
+              value={formData.translations?.tr?.description || ''}
+              onChange={(e) => setFormData({
+                ...formData,
+                translations: {
+                  ...formData.translations,
+                  tr: { ...formData.translations?.tr, description: e.target.value }
+                }
+              })}
+              className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
+              rows="3"
+              required
+              autoComplete="off"
+            />
+          </div>
         </div>
+
+        {/* English Name & Description */}
+        <div className="space-y-4 p-4 bg-white/50 rounded-xl">
+          <h4 className="text-sm font-medium text-charcoal/70">🇬🇧 English</h4>
+          <div>
+            <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
+              Product Name
+            </label>
+            <input
+              type="text"
+              value={formData.translations?.en?.name || ''}
+              onChange={(e) => setFormData({
+                ...formData,
+                translations: {
+                  ...formData.translations,
+                  en: { ...formData.translations?.en, name: e.target.value }
+                }
+              })}
+              className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
+              required
+              autoComplete="off"
+            />
+          </div>
+          <div>
+            <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">Description</label>
+            <textarea
+              value={formData.translations?.en?.description || ''}
+              onChange={(e) => setFormData({
+                ...formData,
+                translations: {
+                  ...formData.translations,
+                  en: { ...formData.translations?.en, description: e.target.value }
+                }
+              })}
+              className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
+              rows="3"
+              required
+              autoComplete="off"
+            />
+          </div>
+        </div>
+
+        {/* Arabic Name & Description */}
+        <div className="space-y-4 p-4 bg-white/50 rounded-xl">
+          <h4 className="text-sm font-medium text-charcoal/70">🇸🇦 العربية</h4>
+          <div>
+            <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide text-right" dir="rtl">
+              اسم المنتج
+            </label>
+            <input
+              type="text"
+              value={formData.translations?.ar?.name || ''}
+              onChange={(e) => setFormData({
+                ...formData,
+                translations: {
+                  ...formData.translations,
+                  ar: { ...formData.translations?.ar, name: e.target.value }
+                }
+              })}
+              className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-right"
+              required
+              autoComplete="off"
+              dir="rtl"
+            />
+          </div>
+          <div>
+            <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide text-right" dir="rtl">وصف</label>
+            <textarea
+              value={formData.translations?.ar?.description || ''}
+              onChange={(e) => setFormData({
+                ...formData,
+                translations: {
+                  ...formData.translations,
+                  ar: { ...formData.translations?.ar, description: e.target.value }
+                }
+              })}
+              className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-right"
+              rows="3"
+              required
+              autoComplete="off"
+              dir="rtl"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
           <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
             Kategori
@@ -43,12 +158,12 @@ const ProductForm = React.memo(function ProductForm({
             <option value="">Seçiniz...</option>
             {categories.map((cat) => (
               <option key={cat.id} value={cat.id}>
-                {cat.icon} {cat.name}
+                {cat.icon} {cat.translations?.tr || ''}
               </option>
             ))}
           </select>
         </div>
-        <div className={editingId ? '' : 'md:col-span-2'}>
+        <div>
           <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">Fiyat (₺)</label>
           <input
             type="number"
@@ -73,17 +188,6 @@ const ProductForm = React.memo(function ProductForm({
             />
           </div>
         )}
-      </div>
-      <div className="mb-6">
-        <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">Açıklama</label>
-        <textarea
-          value={formData.description}
-          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-          className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sand-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
-          rows="3"
-          required
-          autoComplete="off"
-        />
       </div>
       <div className="mb-6">
         <ImageUploader

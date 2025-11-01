@@ -1,38 +1,105 @@
 {
+  "settings": {
+    "languages": {
+      "tr": { "enabled": true, "label": "Türkçe", "flag": "🇹🇷" },
+      "en": { "enabled": false, "label": "English", "flag": "🇬🇧" },
+      "ar": { "enabled": false, "label": "العربية", "flag": "🇸🇦" }
+    },
+    "logo": "",
+    "footer": {
+      "tr": {
+        "address": "Örnek Mahallesi, Cafe Sokak No: 123, İstanbul",
+        "phone": "+90 XXX XXX XX XX",
+        "email": "info@example.com",
+        "hours": "Pazartesi - Pazar: 08:00 - 23:00"
+      },
+      "en": {
+        "address": "Example Street No: 123, Istanbul",
+        "phone": "+90 XXX XXX XX XX",
+        "email": "info@example.com",
+        "hours": "Monday - Sunday: 08:00 - 23:00"
+      },
+      "ar": {
+        "address": "شارع المثال رقم ١٢٣، إسطنبول",
+        "phone": "+90 XXX XXX XX XX",
+        "email": "info@example.com",
+        "hours": "الاثنين - الأحد: ٠٨:٠٠ - ٢٣:٠٠"
+      }
+    },
+    "about": {
+      "tr": {
+        "title": "Hakkımızda",
+        "content": "Kaliteli kahve ve lezzetli yemekler sunarak müşterilerimize unutulmaz anlar yaşatıyoruz."
+      },
+      "en": {
+        "title": "About Us",
+        "content": "We create unforgettable moments for our customers by serving quality coffee and delicious food."
+      },
+      "ar": {
+        "title": "معلومات عنا",
+        "content": "نخلق لحظات لا تنسى لعملائنا من خلال تقديم القهوة الجيدة والطعام اللذيذ."
+      }
+    },
+    "whatsappNumber": "+905XXXXXXXXX"
+  },
   "categories": [
     {
       "id": "cat-1",
-      "name": "Kahve & Espresso",
+      "translations": {
+        "tr": "Kahve & Espresso",
+        "en": "Coffee & Espresso",
+        "ar": "قهوة وإسبريسو"
+      },
       "order": 1,
       "icon": "☕"
     },
     {
       "id": "cat-2",
-      "name": "Soğuk İçecekler",
+      "translations": {
+        "tr": "Soğuk İçecekler",
+        "en": "Cold Drinks",
+        "ar": "مشروبات باردة"
+      },
       "order": 2,
       "icon": "🥤"
     },
     {
       "id": "cat-3",
-      "name": "Kahvaltı",
+      "translations": {
+        "tr": "Kahvaltı",
+        "en": "Breakfast",
+        "ar": "إفطار"
+      },
       "order": 3,
       "icon": "🍳"
     },
     {
       "id": "cat-4",
-      "name": "Tatlılar",
+      "translations": {
+        "tr": "Tatlılar",
+        "en": "Desserts",
+        "ar": "حلويات"
+      },
       "order": 4,
       "icon": "🍰"
     },
     {
       "id": "cat-5",
-      "name": "Ana Yemekler",
+      "translations": {
+        "tr": "Ana Yemekler",
+        "en": "Main Courses",
+        "ar": "أطباق رئيسية"
+      },
       "order": 5,
       "icon": "🍔"
     },
     {
       "id": "cat-6",
-      "name": "Salatalar",
+      "translations": {
+        "tr": "Salatalar",
+        "en": "Salads",
+        "ar": "سلطات"
+      },
       "order": 6,
       "icon": "🥗"
     }
@@ -41,8 +108,20 @@
     {
       "id": "prod-1",
       "categoryId": "cat-1",
-      "name": "Espresso",
-      "description": "Klasik İtalyan usulü espresso, yoğun ve aromatik",
+      "translations": {
+        "tr": {
+          "name": "Espresso",
+          "description": "Klasik İtalyan usulü espresso, yoğun ve aromatik"
+        },
+        "en": {
+          "name": "Espresso",
+          "description": "Classic Italian espresso, intense and aromatic"
+        },
+        "ar": {
+          "name": "إسبريسو",
+          "description": "إسبريسو إيطالي كلاسيكي، قوي وعطري"
+        }
+      },
       "price": 35,
       "image": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800&q=80",
       "available": true,
@@ -51,8 +130,20 @@
     {
       "id": "prod-2",
       "categoryId": "cat-1",
-      "name": "Cappuccino",
-      "description": "Espresso, sıcak süt ve kremsi süt köpüğü",
+      "translations": {
+        "tr": {
+          "name": "Cappuccino",
+          "description": "Espresso, sıcak süt ve kremsi süt köpüğü"
+        },
+        "en": {
+          "name": "Cappuccino",
+          "description": "Espresso, hot milk and creamy milk foam"
+        },
+        "ar": {
+          "name": "كابتشينو",
+          "description": "إسبريسو، حليب ساخن ورغوة حليب كريمية"
+        }
+      },
       "price": 55,
       "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=800&q=80",
       "available": true,
@@ -61,8 +152,20 @@
     {
       "id": "prod-3",
       "categoryId": "cat-1",
-      "name": "Latte",
-      "description": "Espresso ve bolca sütlü kahve",
+      "translations": {
+        "tr": {
+          "name": "Latte",
+          "description": "Espresso ve bolca sütlü kahve"
+        },
+        "en": {
+          "name": "Latte",
+          "description": "Espresso and plenty of milk"
+        },
+        "ar": {
+          "name": "لاتيه",
+          "description": "إسبريسو وحليب وفير"
+        }
+      },
       "price": 50,
       "image": "https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=800&q=80",
       "available": true,
@@ -71,8 +174,20 @@
     {
       "id": "prod-4",
       "categoryId": "cat-1",
-      "name": "Flat White",
-      "description": "Mikro köpüklü süt ve çift shot espresso",
+      "translations": {
+        "tr": {
+          "name": "Flat White",
+          "description": "Mikro köpüklü süt ve çift shot espresso"
+        },
+        "en": {
+          "name": "Flat White",
+          "description": "Micro-foam milk and double shot espresso"
+        },
+        "ar": {
+          "name": "فلات وايت",
+          "description": "حليب بالرغوة الدقيقة وإسبريسو مزدوج"
+        }
+      },
       "price": 60,
       "image": "/images/products/93ee20287f13f86937f425ac053b7a21-1759804089763.jpg",
       "available": true,
@@ -81,8 +196,20 @@
     {
       "id": "prod-5",
       "categoryId": "cat-1",
-      "name": "Mocha",
-      "description": "Espresso, sıcak süt ve belçika çikolatası",
+      "translations": {
+        "tr": {
+          "name": "Mocha",
+          "description": "Espresso, sıcak süt ve belçika çikolatası"
+        },
+        "en": {
+          "name": "Mocha",
+          "description": "Espresso, hot milk and Belgian chocolate"
+        },
+        "ar": {
+          "name": "موكا",
+          "description": "إسبريسو، حليب ساخن وشوكولاتة بلجيكية"
+        }
+      },
       "price": 65,
       "image": "/images/products/3637dd93642dfea21c1ce8fe15dab430-1759804228143.jpg",
       "available": true,
@@ -91,8 +218,20 @@
     {
       "id": "prod-6",
       "categoryId": "cat-1",
-      "name": "Türk Kahvesi",
-      "description": "Geleneksel usulde hazırlanmış özel harmanımız",
+      "translations": {
+        "tr": {
+          "name": "Türk Kahvesi",
+          "description": "Geleneksel usulde hazırlanmış özel harmanımız"
+        },
+        "en": {
+          "name": "Turkish Coffee",
+          "description": "Our special blend prepared in traditional style"
+        },
+        "ar": {
+          "name": "قهوة تركية",
+          "description": "مزيجنا الخاص المحضر بالطريقة التقليدية"
+        }
+      },
       "price": 45,
       "image": "https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=800&q=80",
       "available": true,
@@ -101,8 +240,20 @@
     {
       "id": "prod-7",
       "categoryId": "cat-2",
-      "name": "Ice Latte",
-      "description": "Buzlu sütlü kahve, serinletici ve kremsi",
+      "translations": {
+        "tr": {
+          "name": "Ice Latte",
+          "description": "Buzlu sütlü kahve, serinletici ve kremsi"
+        },
+        "en": {
+          "name": "Ice Latte",
+          "description": "Iced milk coffee, refreshing and creamy"
+        },
+        "ar": {
+          "name": "لاتيه مثلج",
+          "description": "قهوة بالحليب المثلج، منعشة وكريمية"
+        }
+      },
       "price": 55,
       "image": "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=800&q=80",
       "available": true,
@@ -111,8 +262,20 @@
     {
       "id": "prod-8",
       "categoryId": "cat-2",
-      "name": "Cold Brew",
-      "description": "12 saat soğuk demleme, yumuşak ve doğal tatlı",
+      "translations": {
+        "tr": {
+          "name": "Cold Brew",
+          "description": "12 saat soğuk demleme, yumuşak ve doğal tatlı"
+        },
+        "en": {
+          "name": "Cold Brew",
+          "description": "12 hours cold brew, smooth and naturally sweet"
+        },
+        "ar": {
+          "name": "كولد برو",
+          "description": "تخمير بارد لمدة ١٢ ساعة، ناعم وحلو طبيعي"
+        }
+      },
       "price": 60,
       "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80",
       "available": true,
@@ -121,8 +284,20 @@
     {
       "id": "prod-9",
       "categoryId": "cat-2",
-      "name": "Limonata",
-      "description": "Taze sıkılmış limon, naneli",
+      "translations": {
+        "tr": {
+          "name": "Limonata",
+          "description": "Taze sıkılmış limon, naneli"
+        },
+        "en": {
+          "name": "Lemonade",
+          "description": "Fresh squeezed lemon with mint"
+        },
+        "ar": {
+          "name": "ليموناضة",
+          "description": "ليمون طازج مع النعناع"
+        }
+      },
       "price": 40,
       "image": "/images/products/93ee20287f13f86937f425ac053b7a21-1759804112806.jpg",
       "available": true,
@@ -131,8 +306,20 @@
     {
       "id": "prod-10",
       "categoryId": "cat-2",
-      "name": "Milkshake",
-      "description": "Çikolata, çilek veya vanilya seçenekleri",
+      "translations": {
+        "tr": {
+          "name": "Milkshake",
+          "description": "Çikolata, çilek veya vanilya seçenekleri"
+        },
+        "en": {
+          "name": "Milkshake",
+          "description": "Chocolate, strawberry or vanilla options"
+        },
+        "ar": {
+          "name": "ميلك شيك",
+          "description": "خيارات الشوكولاتة والفراولة والفانيليا"
+        }
+      },
       "price": 70,
       "image": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&q=80",
       "available": true,
@@ -141,8 +328,20 @@
     {
       "id": "prod-11",
       "categoryId": "cat-2",
-      "name": "Smoothie",
-      "description": "Taze meyveli smoothie (yeşil/berry/tropical)",
+      "translations": {
+        "tr": {
+          "name": "Smoothie",
+          "description": "Taze meyveli smoothie (yeşil/berry/tropical)"
+        },
+        "en": {
+          "name": "Smoothie",
+          "description": "Fresh fruit smoothie (green/berry/tropical)"
+        },
+        "ar": {
+          "name": "سموذي",
+          "description": "سموذي الفواكه الطازجة (أخضر/توت/استوائي)"
+        }
+      },
       "price": 65,
       "image": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=800&q=80",
       "available": true,
@@ -151,8 +350,20 @@
     {
       "id": "prod-12",
       "categoryId": "cat-3",
-      "name": "Serpme Kahvaltı",
-      "description": "Zengin peynir çeşitleri, zeytin, reçel, bal, yumurta, salam, sosis",
+      "translations": {
+        "tr": {
+          "name": "Serpme Kahvaltı",
+          "description": "Zengin peynir çeşitleri, zeytin, reçel, bal, yumurta, salam, sosis"
+        },
+        "en": {
+          "name": "Turkish Breakfast",
+          "description": "Rich cheese varieties, olives, jam, honey, eggs, salami, sausage"
+        },
+        "ar": {
+          "name": "إفطار تركي",
+          "description": "أنواع جبن غنية، زيتون، مربى، عسل، بيض، سلامي، سجق"
+        }
+      },
       "price": 180,
       "image": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80",
       "available": true,
@@ -161,8 +372,20 @@
     {
       "id": "prod-13",
       "categoryId": "cat-3",
-      "name": "Menemen",
-      "description": "Domates, biber, soğan ve yumurta ile geleneksel menemen",
+      "translations": {
+        "tr": {
+          "name": "Menemen",
+          "description": "Domates, biber, soğan ve yumurta ile geleneksel menemen"
+        },
+        "en": {
+          "name": "Menemen",
+          "description": "Traditional Turkish scrambled eggs with tomatoes, peppers, onions"
+        },
+        "ar": {
+          "name": "مينيمن",
+          "description": "بيض تركي تقليدي مع الطماطم والفلفل والبصل"
+        }
+      },
       "price": 75,
       "image": "https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=800&q=80",
       "available": true,
@@ -171,8 +394,20 @@
     {
       "id": "prod-14",
       "categoryId": "cat-3",
-      "name": "Pancake",
-      "description": "Akçaağaç şurubu ve tereyağı ile yumuşak pankek",
+      "translations": {
+        "tr": {
+          "name": "Pancake",
+          "description": "Akçaağaç şurubu ve tereyağı ile yumuşak pankek"
+        },
+        "en": {
+          "name": "Pancake",
+          "description": "Soft pancakes with maple syrup and butter"
+        },
+        "ar": {
+          "name": "بان كيك",
+          "description": "فطائر ناعمة مع شراب القيقب والزبدة"
+        }
+      },
       "price": 85,
       "image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80",
       "available": true,
@@ -181,8 +416,20 @@
     {
       "id": "prod-15",
       "categoryId": "cat-3",
-      "name": "Waffle",
-      "description": "Taze meyveli, çikolata soslu veya bal-tereyağlı",
+      "translations": {
+        "tr": {
+          "name": "Waffle",
+          "description": "Taze meyveli, çikolata soslu veya bal-tereyağlı"
+        },
+        "en": {
+          "name": "Waffle",
+          "description": "Fresh fruit, chocolate sauce or honey-butter"
+        },
+        "ar": {
+          "name": "وافل",
+          "description": "فواكه طازجة، صلصة شوكولاتة أو عسل وزبدة"
+        }
+      },
       "price": 90,
       "image": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=800&q=80",
       "available": true,
@@ -191,8 +438,20 @@
     {
       "id": "prod-16",
       "categoryId": "cat-3",
-      "name": "Avocado Toast",
-      "description": "Ezilmiş avokado, poşe yumurta, kırmızı biber, ekşi maya ekmeği",
+      "translations": {
+        "tr": {
+          "name": "Avocado Toast",
+          "description": "Ezilmiş avokado, poşe yumurta, kırmızı biber, ekşi maya ekmeği"
+        },
+        "en": {
+          "name": "Avocado Toast",
+          "description": "Smashed avocado, poached egg, red pepper, sourdough bread"
+        },
+        "ar": {
+          "name": "توست أفوكادو",
+          "description": "أفوكادو مهروس، بيض مسلوق، فلفل أحمر، خبز العجين المخمر"
+        }
+      },
       "price": 95,
       "image": "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=800&q=80",
       "available": true,
@@ -201,8 +460,20 @@
     {
       "id": "prod-17",
       "categoryId": "cat-3",
-      "name": "French Toast",
-      "description": "Karamelize muz, akçaağaç şurubu ve tereyağı",
+      "translations": {
+        "tr": {
+          "name": "French Toast",
+          "description": "Karamelize muz, akçaağaç şurubu ve tereyağı"
+        },
+        "en": {
+          "name": "French Toast",
+          "description": "Caramelized banana, maple syrup and butter"
+        },
+        "ar": {
+          "name": "توست فرنسي",
+          "description": "موز كراميل، شراب القيقب والزبدة"
+        }
+      },
       "price": 80,
       "image": "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80",
       "available": true,
@@ -211,8 +482,20 @@
     {
       "id": "prod-18",
       "categoryId": "cat-3",
-      "name": "Omlet",
-      "description": "3 yumurtalı omlet, peynir/mantar/sebze seçenekleri",
+      "translations": {
+        "tr": {
+          "name": "Omlet",
+          "description": "3 yumurtalı omlet, peynir/mantar/sebze seçenekleri"
+        },
+        "en": {
+          "name": "Omelette",
+          "description": "3-egg omelette with cheese/mushroom/vegetable options"
+        },
+        "ar": {
+          "name": "أومليت",
+          "description": "أومليت ٣ بيضات مع خيارات جبن/فطر/خضروات"
+        }
+      },
       "price": 70,
       "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
       "available": true,
@@ -221,8 +504,20 @@
     {
       "id": "prod-19",
       "categoryId": "cat-3",
-      "name": "Granola Bowl",
-      "description": "Ev yapımı granola, yoğurt, taze meyveler, bal",
+      "translations": {
+        "tr": {
+          "name": "Granola Bowl",
+          "description": "Ev yapımı granola, yoğurt, taze meyveler, bal"
+        },
+        "en": {
+          "name": "Granola Bowl",
+          "description": "Homemade granola, yogurt, fresh fruits, honey"
+        },
+        "ar": {
+          "name": "وعاء جرانولا",
+          "description": "جرانولا منزلية، زبادي، فواكه طازجة، عسل"
+        }
+      },
       "price": 75,
       "image": "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=800&q=80",
       "available": true,
@@ -231,8 +526,20 @@
     {
       "id": "prod-20",
       "categoryId": "cat-4",
-      "name": "Cheesecake",
-      "description": "Kremsi New York style cheesecake, çilekli veya orman meyveli",
+      "translations": {
+        "tr": {
+          "name": "Cheesecake",
+          "description": "Kremsi New York style cheesecake, çilekli veya orman meyveli"
+        },
+        "en": {
+          "name": "Cheesecake",
+          "description": "Creamy New York style cheesecake, strawberry or forest berries"
+        },
+        "ar": {
+          "name": "تشيز كيك",
+          "description": "تشيز كيك نيويورك الكريمي، فراولة أو توت الغابة"
+        }
+      },
       "price": 85,
       "image": "/images/products/dea01a87b4e0389b06ea43a19e6af30c-1759802820083.jpg",
       "available": true,
@@ -241,8 +548,20 @@
     {
       "id": "prod-21",
       "categoryId": "cat-4",
-      "name": "Tiramisu",
-      "description": "Klasik İtalyan tatlısı, mascarpone ve kahve",
+      "translations": {
+        "tr": {
+          "name": "Tiramisu",
+          "description": "Klasik İtalyan tatlısı, mascarpone ve kahve"
+        },
+        "en": {
+          "name": "Tiramisu",
+          "description": "Classic Italian dessert with mascarpone and coffee"
+        },
+        "ar": {
+          "name": "تيراميسو",
+          "description": "حلوى إيطالية كلاسيكية مع ماسكاربوني وقهوة"
+        }
+      },
       "price": 90,
       "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=80",
       "available": true,
@@ -251,8 +570,20 @@
     {
       "id": "prod-22",
       "categoryId": "cat-4",
-      "name": "Brownie",
-      "description": "Çikolatalı ıslak kek, vanilyalı dondurma ile",
+      "translations": {
+        "tr": {
+          "name": "Brownie",
+          "description": "Çikolatalı ıslak kek, vanilyalı dondurma ile"
+        },
+        "en": {
+          "name": "Brownie",
+          "description": "Chocolate fudge cake with vanilla ice cream"
+        },
+        "ar": {
+          "name": "براوني",
+          "description": "كيك شوكولاتة رطب مع آيس كريم الفانيليا"
+        }
+      },
       "price": 75,
       "image": "https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=800&q=80",
       "available": true,
@@ -261,8 +592,20 @@
     {
       "id": "prod-23",
       "categoryId": "cat-4",
-      "name": "Croissant",
-      "description": "Tereyağlı, badem kremalı veya çikolatalı",
+      "translations": {
+        "tr": {
+          "name": "Croissant",
+          "description": "Tereyağlı, badem kremalı veya çikolatalı"
+        },
+        "en": {
+          "name": "Croissant",
+          "description": "Butter, almond cream or chocolate"
+        },
+        "ar": {
+          "name": "كرواسون",
+          "description": "زبدة، كريمة اللوز أو شوكولاتة"
+        }
+      },
       "price": 45,
       "image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80",
       "available": true,
@@ -271,8 +614,20 @@
     {
       "id": "prod-24",
       "categoryId": "cat-4",
-      "name": "San Sebastian Cheesecake",
-      "description": "Karamelize yüzeyli özel cheesecake",
+      "translations": {
+        "tr": {
+          "name": "San Sebastian Cheesecake",
+          "description": "Karamelize yüzeyli özel cheesecake"
+        },
+        "en": {
+          "name": "San Sebastian Cheesecake",
+          "description": "Special cheesecake with caramelized surface"
+        },
+        "ar": {
+          "name": "تشيز كيك سان سيباستيان",
+          "description": "تشيز كيك خاص بسطح كراميل"
+        }
+      },
       "price": 95,
       "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
       "available": true,
@@ -281,8 +636,20 @@
     {
       "id": "prod-25",
       "categoryId": "cat-4",
-      "name": "Macaron",
-      "description": "Renkli Fransız makaronları (6'lı)",
+      "translations": {
+        "tr": {
+          "name": "Macaron",
+          "description": "Renkli Fransız makaronları (6'lı)"
+        },
+        "en": {
+          "name": "Macaron",
+          "description": "Colorful French macarons (6 pieces)"
+        },
+        "ar": {
+          "name": "ماكارون",
+          "description": "ماكارون فرنسي ملون (٦ قطع)"
+        }
+      },
       "price": 65,
       "image": "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=800&q=80",
       "available": true,
@@ -291,8 +658,20 @@
     {
       "id": "prod-26",
       "categoryId": "cat-5",
-      "name": "Burger",
-      "description": "200gr dana eti, özel sos, sebzeler, patates kızartması",
+      "translations": {
+        "tr": {
+          "name": "Burger",
+          "description": "200gr dana eti, özel sos, sebzeler, patates kızartması"
+        },
+        "en": {
+          "name": "Burger",
+          "description": "200gr beef, special sauce, vegetables, french fries"
+        },
+        "ar": {
+          "name": "برجر",
+          "description": "٢٠٠ جرام لحم بقري، صلصة خاصة، خضروات، بطاطس مقلية"
+        }
+      },
       "price": 140,
       "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80",
       "available": true,
@@ -301,8 +680,20 @@
     {
       "id": "prod-27",
       "categoryId": "cat-5",
-      "name": "Chicken Wrap",
-      "description": "Izgara tavuk, sebzeler, özel sos, patates kızartması",
+      "translations": {
+        "tr": {
+          "name": "Chicken Wrap",
+          "description": "Izgara tavuk, sebzeler, özel sos, patates kızartması"
+        },
+        "en": {
+          "name": "Chicken Wrap",
+          "description": "Grilled chicken, vegetables, special sauce, french fries"
+        },
+        "ar": {
+          "name": "راب دجاج",
+          "description": "دجاج مشوي، خضروات، صلصة خاصة، بطاطس مقلية"
+        }
+      },
       "price": 110,
       "image": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800&q=80",
       "available": true,
@@ -311,8 +702,20 @@
     {
       "id": "prod-28",
       "categoryId": "cat-5",
-      "name": "Club Sandwich",
-      "description": "Tavuk, bacon, marul, domates, patates kızartması",
+      "translations": {
+        "tr": {
+          "name": "Club Sandwich",
+          "description": "Tavuk, bacon, marul, domates, patates kızartması"
+        },
+        "en": {
+          "name": "Club Sandwich",
+          "description": "Chicken, bacon, lettuce, tomato, french fries"
+        },
+        "ar": {
+          "name": "ساندويتش كلوب",
+          "description": "دجاج، بيكون، خس، طماطم، بطاطس مقلية"
+        }
+      },
       "price": 120,
       "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=800&q=80",
       "available": true,
@@ -321,8 +724,20 @@
     {
       "id": "prod-29",
       "categoryId": "cat-5",
-      "name": "Pasta Alfredo",
-      "description": "Kremsi alfredo sos, tavuklu veya mantarlı",
+      "translations": {
+        "tr": {
+          "name": "Pasta Alfredo",
+          "description": "Kremsi alfredo sos, tavuklu veya mantarlı"
+        },
+        "en": {
+          "name": "Pasta Alfredo",
+          "description": "Creamy alfredo sauce with chicken or mushrooms"
+        },
+        "ar": {
+          "name": "باستا ألفريدو",
+          "description": "صلصة ألفريدو الكريمية مع دجاج أو فطر"
+        }
+      },
       "price": 130,
       "image": "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=800&q=80",
       "available": true,
@@ -331,8 +746,20 @@
     {
       "id": "prod-30",
       "categoryId": "cat-6",
-      "name": "Caesar Salad",
-      "description": "Marul, parmesan, kruton, özel caesar sos, tavuk",
+      "translations": {
+        "tr": {
+          "name": "Caesar Salad",
+          "description": "Marul, parmesan, kruton, özel caesar sos, tavuk"
+        },
+        "en": {
+          "name": "Caesar Salad",
+          "description": "Lettuce, parmesan, croutons, special caesar dressing, chicken"
+        },
+        "ar": {
+          "name": "سلطة سيزر",
+          "description": "خس، بارميزان، خبز محمص، صلصة سيزر خاصة، دجاج"
+        }
+      },
       "price": 95,
       "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=800&q=80",
       "available": true,
@@ -341,8 +768,20 @@
     {
       "id": "prod-31",
       "categoryId": "cat-6",
-      "name": "Quinoa Salad",
-      "description": "Kinoa, avokado, nar, ceviz, limon-zeytinyağı sos",
+      "translations": {
+        "tr": {
+          "name": "Quinoa Salad",
+          "description": "Kinoa, avokado, nar, ceviz, limon-zeytinyağı sos"
+        },
+        "en": {
+          "name": "Quinoa Salad",
+          "description": "Quinoa, avocado, pomegranate, walnut, lemon-olive oil dressing"
+        },
+        "ar": {
+          "name": "سلطة كينوا",
+          "description": "كينوا، أفوكادو، رمان، جوز، صلصة ليمون وزيت زيتون"
+        }
+      },
       "price": 100,
       "image": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=800&q=80",
       "available": true,
@@ -351,8 +790,20 @@
     {
       "id": "prod-32",
       "categoryId": "cat-6",
-      "name": "Greek Salad",
-      "description": "Beyaz peynir, zeytin, domates, salatalık, soğan",
+      "translations": {
+        "tr": {
+          "name": "Greek Salad",
+          "description": "Beyaz peynir, zeytin, domates, salatalık, soğan"
+        },
+        "en": {
+          "name": "Greek Salad",
+          "description": "Feta cheese, olives, tomatoes, cucumber, onion"
+        },
+        "ar": {
+          "name": "سلطة يونانية",
+          "description": "جبنة فيتا، زيتون، طماطم، خيار، بصل"
+        }
+      },
       "price": 85,
       "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80",
       "available": true,

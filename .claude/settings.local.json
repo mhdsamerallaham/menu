@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_LpyjAfNwOju2fgPJqCmA0Dq6lGch/6JnuC0OoNe)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

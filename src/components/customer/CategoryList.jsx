@@ -1,6 +1,17 @@
 'use client'
 
+import { useLanguage } from '@/contexts/LanguageContext'
+
 export default function CategoryList({ categories, activeCategory, onCategoryClick }) {
+  const { currentLanguage, t } = useLanguage()
+
+  const translations = {
+    tr: { all: 'Tümü' },
+    en: { all: 'All' },
+    ar: { all: 'الكل' }
+  }
+
+  const allText = translations[currentLanguage]?.all || 'Tümü'
   return (
     <div className="sticky top-0 z-20 border-b border-white/20 py-4">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -13,7 +24,7 @@ export default function CategoryList({ categories, activeCategory, onCategoryCli
                 : 'bg-transparent text-charcoal/60 hover:text-charcoal hover:bg-sand-100'
             }`}
           >
-            Tümü
+            {allText}
           </button>
 
           {categories.map((category) => (
@@ -28,7 +39,7 @@ export default function CategoryList({ categories, activeCategory, onCategoryCli
             >
               <span className="flex items-center gap-3">
                 <span className="text-2xl">{category.icon}</span>
-                <span>{category.name}</span>
+                <span>{t(category.translations)}</span>
               </span>
             </button>
           ))}

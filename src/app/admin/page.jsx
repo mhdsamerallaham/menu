@@ -5,10 +5,34 @@ import Image from 'next/image'
 import AdminLogin from '@/components/admin/AdminLogin'
 import CategoryManager from '@/components/admin/CategoryManager'
 import ProductManager from '@/components/admin/ProductManager'
+import SettingsManager from '@/components/admin/SettingsManager'
 
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [menuData, setMenuData] = useState({ categories: [], products: [] })
+  const [activeTab, setActiveTab] = useState('settings')
+  const [menuData, setMenuData] = useState({
+    categories: [],
+    products: [],
+    settings: {
+      languages: {
+        tr: { enabled: true, label: 'Türkçe', flag: '🇹🇷' },
+        en: { enabled: false, label: 'English', flag: '🇬🇧' },
+        ar: { enabled: false, label: 'العربية', flag: '🇸🇦' }
+      },
+      logo: '',
+      footer: {
+        tr: { address: '', phone: '', email: '', hours: '' },
+        en: { address: '', phone: '', email: '', hours: '' },
+        ar: { address: '', phone: '', email: '', hours: '' }
+      },
+      about: {
+        tr: { title: '', content: '' },
+        en: { title: '', content: '' },
+        ar: { title: '', content: '' }
+      },
+      whatsappNumber: ''
+    }
+  })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
 
@@ -229,21 +253,73 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="space-y-8">
-            <CategoryManager
-              categories={menuData.categories}
-              onUpdate={(updated) =>
-                setMenuData({ ...menuData, categories: updated })
-              }
-            />
+          {/* Tab Navigation */}
+          <div className="mb-8">
+            <div className="bg-white/60 backdrop-blur-lg rounded-2xl border border-sage-200/30 p-2 shadow-lg">
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setActiveTab('settings')}
+                  className={`flex-1 md:flex-none px-6 py-3 rounded-xl font-light text-sm tracking-wide transition-all ${
+                    activeTab === 'settings'
+                      ? 'bg-gradient-to-r from-sage-600 to-sage-700 text-white shadow-lg shadow-sage-600/20'
+                      : 'text-charcoal/70 hover:bg-sage-50'
+                  }`}
+                >
+                  ⚙️ Ayarlar
+                </button>
+                <button
+                  onClick={() => setActiveTab('categories')}
+                  className={`flex-1 md:flex-none px-6 py-3 rounded-xl font-light text-sm tracking-wide transition-all ${
+                    activeTab === 'categories'
+                      ? 'bg-gradient-to-r from-sage-600 to-sage-700 text-white shadow-lg shadow-sage-600/20'
+                      : 'text-charcoal/70 hover:bg-sage-50'
+                  }`}
+                >
+                  📋 Kategoriler
+                </button>
+                <button
+                  onClick={() => setActiveTab('products')}
+                  className={`flex-1 md:flex-none px-6 py-3 rounded-xl font-light text-sm tracking-wide transition-all ${
+                    activeTab === 'products'
+                      ? 'bg-gradient-to-r from-sage-600 to-sage-700 text-white shadow-lg shadow-sage-600/20'
+                      : 'text-charcoal/70 hover:bg-sage-50'
+                  }`}
+                >
+                  🍽️ Ürünler
+                </button>
+              </div>
+            </div>
+          </div>
 
-            <ProductManager
-              products={menuData.products}
-              categories={menuData.categories}
-              onUpdate={(updated) =>
-                setMenuData({ ...menuData, products: updated })
-              }
-            />
+          {/* Tab Content */}
+          <div className="space-y-8">
+            {activeTab === 'settings' && (
+              <SettingsManager
+                settings={menuData.settings}
+                onUpdate={(updated) =>
+                  setMenuData({ ...menuData, settings: updated })
+                }
+              />
+            )}
+
+            {activeTab === 'categories' && (
+              <CategoryManager
+                categories={menuData.categories}
+                onUpdate={(updated) =>
+                  setMenuData({ ...menuData, categories: updated })
+                }
+              />
+            )}
+
+            {activeTab === 'products' && (
+              <ProductManager
+                products={menuData.products}
+                categories={menuData.categories}
+                onUpdate={(updated) =>
+                  setMenuData({ ...menuData, products: updated })
+                }
+              />
+            )}
           </div>
         </div>
 

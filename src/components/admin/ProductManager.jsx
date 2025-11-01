@@ -9,8 +9,11 @@ export default function ProductManager({ products, categories, onUpdate }) {
   const [editingId, setEditingId] = useState(null)
   const [filterCategory, setFilterCategory] = useState(null)
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
+    translations: {
+      tr: { name: '', description: '' },
+      en: { name: '', description: '' },
+      ar: { name: '', description: '' }
+    },
     price: 0,
     categoryId: '',
     image: '',
@@ -40,8 +43,11 @@ export default function ProductManager({ products, categories, onUpdate }) {
     }
 
     setFormData({
-      name: '',
-      description: '',
+      translations: {
+        tr: { name: '', description: '' },
+        en: { name: '', description: '' },
+        ar: { name: '', description: '' }
+      },
       price: 0,
       categoryId: '',
       image: '',
@@ -132,7 +138,7 @@ export default function ProductManager({ products, categories, onUpdate }) {
           <option value="">Tümü</option>
           {categories.map((cat) => (
             <option key={cat.id} value={cat.id}>
-              {cat.icon} {cat.name}
+              {cat.icon} {cat.translations?.tr || ''}
             </option>
           ))}
         </select>
@@ -149,8 +155,11 @@ export default function ProductManager({ products, categories, onUpdate }) {
             onCancel={() => {
               setIsAdding(false)
               setFormData({
-                name: '',
-                description: '',
+                translations: {
+                  tr: { name: '', description: '' },
+                  en: { name: '', description: '' },
+                  ar: { name: '', description: '' }
+                },
                 price: 0,
                 categoryId: '',
                 image: '',
@@ -194,11 +203,11 @@ export default function ProductManager({ products, categories, onUpdate }) {
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-light text-base md:text-xl text-charcoal tracking-tight mb-1 md:mb-2">{product.name}</h3>
-                    <p className="text-xs md:text-sm text-charcoal/60 font-light mb-2 md:mb-3 line-clamp-2">{product.description}</p>
+                    <h3 className="font-light text-base md:text-xl text-charcoal tracking-tight mb-1 md:mb-2">{product.translations?.tr?.name || ''}</h3>
+                    <p className="text-xs md:text-sm text-charcoal/60 font-light mb-2 md:mb-3 line-clamp-2">{product.translations?.tr?.description || ''}</p>
                     <div className="flex items-center gap-2 md:gap-4 flex-wrap">
                       <span className="text-xs md:text-sm text-charcoal/50 font-light bg-sage-50 px-2 md:px-3 py-1 rounded-full">
-                        {category?.icon} {category?.name}
+                        {category?.icon} {category?.translations?.tr || ''}
                       </span>
                       <span className="text-base md:text-lg font-light text-charcoal">{product.price} ₺</span>
                       <span className="text-xs text-charcoal/40 font-light">Sıra: {product.order}</span>
@@ -253,8 +262,11 @@ export default function ProductManager({ products, categories, onUpdate }) {
                     onCancel={() => {
                       setEditingId(null)
                       setFormData({
-                        name: '',
-                        description: '',
+                        translations: {
+                          tr: { name: '', description: '' },
+                          en: { name: '', description: '' },
+                          ar: { name: '', description: '' }
+                        },
                         price: 0,
                         categoryId: '',
                         image: '',

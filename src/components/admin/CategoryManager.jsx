@@ -80,7 +80,11 @@ const FOOD_ICONS = [
 export default function CategoryManager({ categories, onUpdate }) {
   const [isAdding, setIsAdding] = useState(false)
   const [editingId, setEditingId] = useState(null)
-  const [formData, setFormData] = useState({ name: '', icon: '', order: 1 })
+  const [formData, setFormData] = useState({
+    translations: { tr: '', en: '', ar: '' },
+    icon: '',
+    order: 1
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -92,7 +96,6 @@ export default function CategoryManager({ categories, onUpdate }) {
       onUpdate(updated)
       setEditingId(null)
     } else {
-      // Otomatik son sıraya ekle
       const maxOrder = categories.length > 0 ? Math.max(...categories.map(c => c.order || 0)) : 0
       const newCategory = {
         id: `cat-${Date.now()}`,
@@ -103,7 +106,7 @@ export default function CategoryManager({ categories, onUpdate }) {
       setIsAdding(false)
     }
 
-    setFormData({ name: '', icon: '', order: 1 })
+    setFormData({ translations: { tr: '', en: '', ar: '' }, icon: '', order: 1 })
   }
 
   const handleDelete = (id) => {
@@ -115,7 +118,7 @@ export default function CategoryManager({ categories, onUpdate }) {
   const handleEdit = (category) => {
     setEditingId(category.id)
     setFormData({
-      name: category.name,
+      translations: category.translations || { tr: '', en: '', ar: '' },
       icon: category.icon,
       order: category.order,
     })
@@ -155,7 +158,7 @@ export default function CategoryManager({ categories, onUpdate }) {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 md:mb-8">
         <div>
           <h2 className="text-2xl md:text-3xl font-light text-charcoal tracking-tight mb-1">Kategori Yönetimi</h2>
-          <p className="text-xs md:text-sm text-charcoal/50 font-light tracking-wide">Menü kategorilerini düzenleyin</p>
+          <p className="text-xs md:text-sm text-charcoal/50 font-light tracking-wide">Menü kategorilerini 3 dilde düzenleyin</p>
         </div>
         {!isAdding && !editingId && (
           <button
@@ -171,22 +174,57 @@ export default function CategoryManager({ categories, onUpdate }) {
       {isAdding && (
         <form onSubmit={handleSubmit} className="mb-8 p-8 bg-gradient-to-br from-sage-50 to-sand-50 rounded-2xl border border-sage-200/50 shadow-lg">
           <h3 className="text-xl font-light text-charcoal mb-6 tracking-tight">Yeni Kategori Ekle</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+          <div className="space-y-6 mb-6">
             <div>
               <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
-                Kategori Adı
+                🇹🇷 Kategori Adı (Türkçe)
               </label>
               <input
                 type="text"
-                value={formData.name}
+                value={formData.translations.tr}
                 onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
+                  setFormData({ ...formData, translations: { ...formData.translations, tr: e.target.value } })
                 }
                 className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
                 required
                 autoComplete="off"
               />
             </div>
+
+            <div>
+              <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
+                🇬🇧 Category Name (English)
+              </label>
+              <input
+                type="text"
+                value={formData.translations.en}
+                onChange={(e) =>
+                  setFormData({ ...formData, translations: { ...formData.translations, en: e.target.value } })
+                }
+                className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
+                required
+                autoComplete="off"
+              />
+            </div>
+
+            <div>
+              <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
+                🇸🇦 اسم الفئة (العربية)
+              </label>
+              <input
+                type="text"
+                value={formData.translations.ar}
+                onChange={(e) =>
+                  setFormData({ ...formData, translations: { ...formData.translations, ar: e.target.value } })
+                }
+                className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-right"
+                required
+                autoComplete="off"
+                dir="rtl"
+              />
+            </div>
+
             <div>
               <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
                 Emoji Icon
@@ -208,6 +246,7 @@ export default function CategoryManager({ categories, onUpdate }) {
               </select>
             </div>
           </div>
+
           <div className="flex flex-col sm:flex-row gap-3">
             <button
               type="submit"
@@ -219,7 +258,7 @@ export default function CategoryManager({ categories, onUpdate }) {
               type="button"
               onClick={() => {
                 setIsAdding(false)
-                setFormData({ name: '', icon: '', order: 1 })
+                setFormData({ translations: { tr: '', en: '', ar: '' }, icon: '', order: 1 })
               }}
               className="bg-white text-charcoal px-8 py-3 rounded-xl hover:bg-charcoal/5 font-light tracking-wide transition-all border border-charcoal/20"
             >
@@ -229,13 +268,15 @@ export default function CategoryManager({ categories, onUpdate }) {
         </form>
       )}
 
-      {/* Professional Table Layout - Desktop */}
+      {/* Desktop Table */}
       <div className="hidden md:block bg-white rounded-2xl border border-charcoal/10 overflow-hidden shadow-sm">
         <table className="w-full">
           <thead>
             <tr className="bg-gradient-to-r from-sage-50 to-sand-50 border-b border-charcoal/10">
               <th className="px-6 py-4 text-left text-sm font-light text-charcoal/70 tracking-wide w-20">Icon</th>
-              <th className="px-6 py-4 text-left text-sm font-light text-charcoal/70 tracking-wide">Kategori Adı</th>
+              <th className="px-6 py-4 text-left text-sm font-light text-charcoal/70 tracking-wide">Türkçe</th>
+              <th className="px-6 py-4 text-left text-sm font-light text-charcoal/70 tracking-wide">English</th>
+              <th className="px-6 py-4 text-left text-sm font-light text-charcoal/70 tracking-wide">العربية</th>
               <th className="px-6 py-4 text-left text-sm font-light text-charcoal/70 tracking-wide w-24">Sıra</th>
               <th className="px-6 py-4 text-right text-sm font-light text-charcoal/70 tracking-wide w-80">İşlemler</th>
             </tr>
@@ -248,7 +289,13 @@ export default function CategoryManager({ categories, onUpdate }) {
                     <span className="text-3xl">{category.icon}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <h3 className="font-light text-lg text-charcoal tracking-tight">{category.name}</h3>
+                    <span className="font-light text-base text-charcoal">{category.translations?.tr || ''}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="font-light text-base text-charcoal/70">{category.translations?.en || ''}</span>
+                  </td>
+                  <td className="px-6 py-4 text-right" dir="rtl">
+                    <span className="font-light text-base text-charcoal/70">{category.translations?.ar || ''}</span>
                   </td>
                   <td className="px-6 py-4">
                     <span className="text-sm text-charcoal/60 font-light">{category.order}</span>
@@ -285,22 +332,21 @@ export default function CategoryManager({ categories, onUpdate }) {
                   </td>
                 </tr>
 
-                {/* Edit form appears right below the category being edited */}
                 {editingId === category.id && (
                   <tr>
-                    <td colSpan="4" className="px-6 py-6 bg-gradient-to-br from-sage-50 to-sand-50">
+                    <td colSpan="6" className="px-6 py-6 bg-gradient-to-br from-sage-50 to-sand-50">
                       <form onSubmit={handleSubmit}>
                         <h3 className="text-xl font-light text-charcoal mb-6 tracking-tight">Kategori Düzenle</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                           <div>
                             <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
-                              Kategori Adı
+                              🇹🇷 Türkçe
                             </label>
                             <input
                               type="text"
-                              value={formData.name}
+                              value={formData.translations.tr}
                               onChange={(e) =>
-                                setFormData({ ...formData, name: e.target.value })
+                                setFormData({ ...formData, translations: { ...formData.translations, tr: e.target.value } })
                               }
                               className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
                               required
@@ -309,8 +355,37 @@ export default function CategoryManager({ categories, onUpdate }) {
                           </div>
                           <div>
                             <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
-                              Emoji Icon
+                              🇬🇧 English
                             </label>
+                            <input
+                              type="text"
+                              value={formData.translations.en}
+                              onChange={(e) =>
+                                setFormData({ ...formData, translations: { ...formData.translations, en: e.target.value } })
+                              }
+                              className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
+                              required
+                              autoComplete="off"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
+                              🇸🇦 العربية
+                            </label>
+                            <input
+                              type="text"
+                              value={formData.translations.ar}
+                              onChange={(e) =>
+                                setFormData({ ...formData, translations: { ...formData.translations, ar: e.target.value } })
+                              }
+                              className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-right"
+                              required
+                              autoComplete="off"
+                              dir="rtl"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">Icon</label>
                             <select
                               value={formData.icon}
                               onChange={(e) =>
@@ -327,19 +402,6 @@ export default function CategoryManager({ categories, onUpdate }) {
                               ))}
                             </select>
                           </div>
-                          <div>
-                            <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">Sıra</label>
-                            <input
-                              type="number"
-                              value={formData.order}
-                              onChange={(e) =>
-                                setFormData({ ...formData, order: parseInt(e.target.value) })
-                              }
-                              className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm"
-                              min="1"
-                              required
-                            />
-                          </div>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-3">
                           <button
@@ -352,7 +414,7 @@ export default function CategoryManager({ categories, onUpdate }) {
                             type="button"
                             onClick={() => {
                               setEditingId(null)
-                              setFormData({ name: '', icon: '', order: 1 })
+                              setFormData({ translations: { tr: '', en: '', ar: '' }, icon: '', order: 1 })
                             }}
                             className="bg-white text-charcoal px-8 py-3 rounded-xl hover:bg-charcoal/5 font-light tracking-wide transition-all border border-charcoal/20"
                           >
@@ -377,7 +439,7 @@ export default function CategoryManager({ categories, onUpdate }) {
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-3xl">{category.icon}</span>
                 <div className="flex-1">
-                  <h3 className="font-light text-base text-charcoal tracking-tight">{category.name}</h3>
+                  <h3 className="font-light text-base text-charcoal tracking-tight">{category.translations?.tr}</h3>
                   <p className="text-xs text-charcoal/50 font-light">Sıra: {category.order}</p>
                 </div>
               </div>
@@ -411,7 +473,6 @@ export default function CategoryManager({ categories, onUpdate }) {
               </div>
             </div>
 
-            {/* Edit form appears right below the category being edited */}
             {editingId === category.id && (
               <div className="px-4 pb-4 bg-gradient-to-br from-sage-50 to-sand-50">
                 <form onSubmit={handleSubmit}>
@@ -419,13 +480,13 @@ export default function CategoryManager({ categories, onUpdate }) {
                   <div className="space-y-4 mb-4">
                     <div>
                       <label className="block text-charcoal/70 font-light text-xs mb-2 tracking-wide">
-                        Kategori Adı
+                        🇹🇷 Türkçe
                       </label>
                       <input
                         type="text"
-                        value={formData.name}
+                        value={formData.translations.tr}
                         onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
+                          setFormData({ ...formData, translations: { ...formData.translations, tr: e.target.value } })
                         }
                         className="w-full px-4 py-3 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-sm"
                         required
@@ -434,8 +495,37 @@ export default function CategoryManager({ categories, onUpdate }) {
                     </div>
                     <div>
                       <label className="block text-charcoal/70 font-light text-xs mb-2 tracking-wide">
-                        Emoji Icon
+                        🇬🇧 English
                       </label>
+                      <input
+                        type="text"
+                        value={formData.translations.en}
+                        onChange={(e) =>
+                          setFormData({ ...formData, translations: { ...formData.translations, en: e.target.value } })
+                        }
+                        className="w-full px-4 py-3 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-sm"
+                        required
+                        autoComplete="off"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-charcoal/70 font-light text-xs mb-2 tracking-wide">
+                        🇸🇦 العربية
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.translations.ar}
+                        onChange={(e) =>
+                          setFormData({ ...formData, translations: { ...formData.translations, ar: e.target.value } })
+                        }
+                        className="w-full px-4 py-3 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-sm text-right"
+                        required
+                        autoComplete="off"
+                        dir="rtl"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-charcoal/70 font-light text-xs mb-2 tracking-wide">Icon</label>
                       <select
                         value={formData.icon}
                         onChange={(e) =>
@@ -452,19 +542,6 @@ export default function CategoryManager({ categories, onUpdate }) {
                         ))}
                       </select>
                     </div>
-                    <div>
-                      <label className="block text-charcoal/70 font-light text-xs mb-2 tracking-wide">Sıra</label>
-                      <input
-                        type="number"
-                        value={formData.order}
-                        onChange={(e) =>
-                          setFormData({ ...formData, order: parseInt(e.target.value) })
-                        }
-                        className="w-full px-4 py-3 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm text-sm"
-                        min="1"
-                        required
-                      />
-                    </div>
                   </div>
                   <div className="flex flex-col gap-2">
                     <button
@@ -477,7 +554,7 @@ export default function CategoryManager({ categories, onUpdate }) {
                       type="button"
                       onClick={() => {
                         setEditingId(null)
-                        setFormData({ name: '', icon: '', order: 1 })
+                        setFormData({ translations: { tr: '', en: '', ar: '' }, icon: '', order: 1 })
                       }}
                       className="bg-white text-charcoal px-6 py-3 rounded-xl hover:bg-charcoal/5 font-light tracking-wide transition-all border border-charcoal/20 text-sm"
                     >

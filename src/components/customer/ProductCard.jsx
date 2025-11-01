@@ -3,9 +3,42 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import ProductModal from './ProductModal'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useCart } from '@/contexts/CartContext'
 
 export default function ProductCard({ product, gridClass }) {
   const [showModal, setShowModal] = useState(false)
+  const { currentLanguage } = useLanguage()
+  const { addToCart } = useCart()
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation()
+    addToCart(product, 1)
+    alert('✅ Ürün sepete eklendi!')
+  }
+
+  const productName = product.translations?.[currentLanguage]?.name || product.name || ''
+  const productDescription = product.translations?.[currentLanguage]?.description || product.description || ''
+
+  const translations = {
+    tr: {
+      details: 'Detayları Gör',
+      addToCart: 'Sepete Ekle',
+      outOfStock: 'Stokta Yok'
+    },
+    en: {
+      details: 'View Details',
+      addToCart: 'Add to Cart',
+      outOfStock: 'Out of Stock'
+    },
+    ar: {
+      details: 'عرض التفاصيل',
+      addToCart: 'أضف إلى السلة',
+      outOfStock: 'إنتهى من المخزن'
+    }
+  }
+
+  const t = translations[currentLanguage] || translations.tr
 
   return (
     <>
@@ -18,7 +51,7 @@ export default function ProductCard({ product, gridClass }) {
         {product.image ? (
           <Image
             src={product.image}
-            alt={product.name}
+            alt={productName}
             fill
             className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:blur-sm"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -35,7 +68,7 @@ export default function ProductCard({ product, gridClass }) {
         {/* Stock badge */}
         {!product.available && (
           <div className="absolute top-4 right-4 bg-charcoal text-pearl px-3 py-1.5 rounded-full text-xs font-light tracking-wide">
-            Stokta Yok
+            {t.outOfStock}
           </div>
         )}
 
@@ -43,12 +76,12 @@ export default function ProductCard({ product, gridClass }) {
         <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
           {/* Product name */}
           <h3 className="font-light text-2xl mb-1.5 tracking-wide">
-            {product.name}
+            {productName}
           </h3>
 
           {/* Description - only show on larger cards */}
           <p className="text-white/80 text-sm mb-3 line-clamp-2 font-light hidden md:block">
-            {product.description}
+            {productDescription}
           </p>
 
           {/* Price */}
@@ -63,8 +96,8 @@ export default function ProductCard({ product, gridClass }) {
         {/* Minimal accent line on hover */}
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-sage-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-        {/* Detayları Gör Button - appears on hover */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+        {/* Action Buttons - appears on hover */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
           <button
             className="bg-white/95 backdrop-blur-sm text-charcoal px-8 py-4 rounded-2xl font-light text-lg tracking-wide shadow-2xl hover:scale-110 transition-all duration-300 pointer-events-auto border-2 border-sage-400"
             onClick={(e) => {
@@ -72,8 +105,17 @@ export default function ProductCard({ product, gridClass }) {
               setShowModal(true)
             }}
           >
-            Detayları Gör
+            {t.details}
           </button>
+
+          {product.available && (
+            <button
+              className="bg-sage-600/95 backdrop-blur-sm text-white px-8 py-4 rounded-2xl font-light text-lg tracking-wide shadow-2xl hover:scale-110 hover:bg-sage-700 transition-all duration-300 pointer-events-auto border-2 border-sage-700"
+              onClick={handleAddToCart}
+            >
+              🛒 {t.addToCart}
+            </button>
+          )}
         </div>
       </div>
     </div>
