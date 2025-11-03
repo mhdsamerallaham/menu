@@ -36,7 +36,9 @@ export default function OrderPage() {
       required: 'zorunlu',
       emptyCart: 'Sepetiniz boş! Lütfen önce ürün ekleyin.',
       fillAllFields: 'Lütfen tüm alanları doldurun!',
-      items: 'Ürünler'
+      items: 'Ürünler',
+      subtotal: 'Ara Toplam',
+      deliveryFee: 'Eve Ulaştırma Hizmet Bedeli'
     },
     en: {
       title: 'Order Information',
@@ -55,7 +57,9 @@ export default function OrderPage() {
       required: 'required',
       emptyCart: 'Your cart is empty! Please add products first.',
       fillAllFields: 'Please fill all fields!',
-      items: 'Items'
+      items: 'Items',
+      subtotal: 'Subtotal',
+      deliveryFee: 'Home Delivery Service Fee'
     },
     ar: {
       title: 'معلومات الطلب',
@@ -74,7 +78,9 @@ export default function OrderPage() {
       required: 'مطلوب',
       emptyCart: 'سلتك فارغة! يرجى إضافة المنتجات أولاً.',
       fillAllFields: 'يرجى ملء جميع الحقول!',
-      items: 'المنتجات'
+      items: 'المنتجات',
+      subtotal: 'المجموع الفرعي',
+      deliveryFee: 'رسوم خدمة التوصيل للمنزل'
     }
   }
 
@@ -128,7 +134,21 @@ export default function OrderPage() {
       message += `   ${t.total}: ${(item.price * item.quantity).toFixed(2)} ₺\n\n`
     })
 
-    message += `💰 *${currentLanguage === 'tr' ? 'GENEL TOPLAM' : currentLanguage === 'en' ? 'GRAND TOTAL' : 'المجموع الإجمالي'}: ${getCartTotal().toFixed(2)} ₺*`
+    // Calculate subtotal and delivery fee
+    const subtotal = getCartTotal()
+    const deliveryFee = settings?.delivery?.enabled ? (settings.delivery.price || 0) : 0
+    const grandTotal = subtotal + deliveryFee
+
+    // Add subtotal
+    message += `📊 *${currentLanguage === 'tr' ? 'ARA TOPLAM' : currentLanguage === 'en' ? 'SUBTOTAL' : 'المجموع الفرعي'}*: ${subtotal.toFixed(2)} ₺\n`
+
+    // Add delivery fee if enabled
+    if (deliveryFee > 0) {
+      const deliveryLabel = settings?.delivery?.label?.[currentLanguage] || t.deliveryFee
+      message += `🚚 *${deliveryLabel}*: ${deliveryFee.toFixed(2)} ₺\n`
+    }
+
+    message += `\n💰 *${currentLanguage === 'tr' ? 'GENEL TOPLAM' : currentLanguage === 'en' ? 'GRAND TOTAL' : 'المجموع الإجمالي'}: ${grandTotal.toFixed(2)} ₺*`
 
     // Encode message for URL
     const encodedMessage = encodeURIComponent(message)
@@ -296,11 +316,32 @@ export default function OrderPage() {
               })}
             </div>
 
-            <div className="pt-4 border-t-2 border-charcoal/20">
+            <div className="space-y-3 pt-4 border-t-2 border-charcoal/20">
+              {/* Subtotal */}
               <div className="flex justify-between items-center" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
+                <span className="text-base font-light text-charcoal/70">{t.subtotal}</span>
+                <span className="text-lg font-light text-charcoal">
+                  {getCartTotal().toFixed(2)} ₺
+                </span>
+              </div>
+
+              {/* Delivery Fee (if enabled) */}
+              {settings?.delivery?.enabled && settings.delivery.price > 0 && (
+                <div className="flex justify-between items-center pb-3 border-b border-charcoal/10" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
+                  <span className="text-base font-light text-charcoal/70">
+                    {settings.delivery.label?.[currentLanguage] || t.deliveryFee}
+                  </span>
+                  <span className="text-lg font-light text-charcoal">
+                    {settings.delivery.price.toFixed(2)} ₺
+                  </span>
+                </div>
+              )}
+
+              {/* Grand Total */}
+              <div className="flex justify-between items-center pt-2" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
                 <span className="text-xl font-light text-charcoal">{t.total}</span>
                 <span className="text-3xl font-light text-charcoal">
-                  {getCartTotal().toFixed(2)} ₺
+                  {(getCartTotal() + (settings?.delivery?.enabled ? (settings.delivery.price || 0) : 0)).toFixed(2)} ₺
                 </span>
               </div>
             </div>

@@ -26,7 +26,16 @@ export default function SettingsManager({ settings, onUpdate }) {
       en: { title: '', content: '' },
       ar: { title: '', content: '' }
     },
-    whatsappNumber: ''
+    whatsappNumber: '',
+    delivery: {
+      enabled: false,
+      price: 0,
+      label: {
+        tr: 'Eve Ulaştırma Hizmet Bedeli',
+        en: 'Home Delivery Service Fee',
+        ar: 'رسوم خدمة التوصيل للمنزل'
+      }
+    }
   })
 
   const handleSubmit = (e) => {
@@ -121,6 +130,55 @@ export default function SettingsManager({ settings, onUpdate }) {
               placeholder="+905XXXXXXXXX"
               autoComplete="off"
             />
+          </div>
+        </div>
+
+        {/* Delivery Fee Settings */}
+        <div className="p-6 bg-gradient-to-br from-sand-50 to-sage-50 rounded-2xl border border-sand-200/50">
+          <h3 className="text-xl font-light text-charcoal mb-4 tracking-tight">Eve Ulaştırma Hizmet Bedeli</h3>
+          <p className="text-sm text-charcoal/60 mb-6">Teslimat ücreti aktif edildiğinde sepet toplamına otomatik olarak eklenecektir</p>
+
+          <div className="space-y-4">
+            {/* Enable/Disable Delivery */}
+            <label className="flex items-center gap-3 cursor-pointer p-4 bg-white rounded-xl border border-charcoal/10 hover:border-sage-500/30 transition-all">
+              <input
+                type="checkbox"
+                checked={formData.delivery?.enabled || false}
+                onChange={(e) => setFormData({
+                  ...formData,
+                  delivery: {
+                    ...formData.delivery,
+                    enabled: e.target.checked
+                  }
+                })}
+                className="w-5 h-5 rounded border-charcoal/20 text-sage-600 focus:ring-sage-400"
+              />
+              <span className="text-charcoal/70 font-light text-sm tracking-wide">Teslimat Ücretini Aktif Et</span>
+            </label>
+
+            {/* Delivery Price */}
+            <div>
+              <label className="block text-charcoal/70 font-light text-sm mb-3 tracking-wide">
+                Teslimat Ücreti (TL)
+              </label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                value={formData.delivery?.price || 0}
+                onChange={(e) => setFormData({
+                  ...formData,
+                  delivery: {
+                    ...formData.delivery,
+                    price: parseFloat(e.target.value) || 0
+                  }
+                })}
+                disabled={!formData.delivery?.enabled}
+                className="w-full px-5 py-3.5 border border-charcoal/20 rounded-xl focus:ring-2 focus:ring-sage-500 focus:border-transparent outline-none font-light bg-white shadow-sm disabled:bg-charcoal/5 disabled:cursor-not-allowed"
+                placeholder="0.00"
+                autoComplete="off"
+              />
+            </div>
           </div>
         </div>
 
