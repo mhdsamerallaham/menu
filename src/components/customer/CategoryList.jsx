@@ -27,22 +27,25 @@ export default function CategoryList({ categories, activeCategory, onCategoryCli
             {allText}
           </button>
 
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => onCategoryClick(category.id)}
-              className={`relative px-8 py-3.5 rounded-full font-light text-lg tracking-wide whitespace-nowrap transition-all duration-300 ${
-                activeCategory === category.id
-                  ? 'bg-charcoal text-pearl'
-                  : 'bg-transparent text-charcoal/60 hover:text-charcoal hover:bg-sand-100'
-              }`}
-            >
-              <span className="flex items-center gap-3">
-                <span className="text-2xl">{category.icon}</span>
-                <span>{t(category.translations)}</span>
-              </span>
-            </button>
-          ))}
+          {categories.map((category) => {
+            const categoryName = category.translations?.[currentLanguage]?.name || category.name || ''
+            return (
+              <button
+                key={category.id}
+                onClick={() => onCategoryClick(category.id)}
+                className={`relative px-8 py-3.5 rounded-full font-light text-lg tracking-wide whitespace-nowrap transition-all duration-300 ${
+                  activeCategory === category.id
+                    ? 'bg-charcoal text-pearl'
+                    : 'bg-transparent text-charcoal/60 hover:text-charcoal hover:bg-sand-100'
+                }`}
+              >
+                <span className="flex items-center gap-3">
+                  <span className="text-2xl">{category.icon}</span>
+                  <span>{categoryName}</span>
+                </span>
+              </button>
+            )
+          })}
         </div>
       </div>
       <style jsx>{`
