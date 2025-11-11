@@ -39,7 +39,7 @@ export default function AboutPage() {
       <div
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: 'url(/images/coffee-hero.png)',
+          backgroundImage: `url(${settings?.backgroundImage || '/images/coffee-hero.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'

@@ -8,7 +8,7 @@ import ProductCard from '@/components/customer/ProductCard'
 import Footer from '@/components/shared/Footer'
 
 export default function MenuPage() {
-  const { currentLanguage } = useLanguage()
+  const { currentLanguage, settings } = useLanguage()
   const [menuData, setMenuData] = useState({ categories: [], products: [] })
   const [activeCategory, setActiveCategory] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -68,7 +68,7 @@ export default function MenuPage() {
       <div
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: 'url(/images/coffee-hero.png)',
+          backgroundImage: `url(${settings?.backgroundImage || '/images/coffee-hero.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
