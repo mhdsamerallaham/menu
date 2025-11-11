@@ -20,6 +20,7 @@ export default function AdminPage() {
         ar: { enabled: false, label: 'العربية', flag: '🇸🇦' }
       },
       logo: '',
+      backgroundImage: '',
       tagline: {
         tr: '',
         en: '',
@@ -161,7 +162,7 @@ export default function AdminPage() {
       <div
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: 'url(/images/coffee-hero.png)',
+          backgroundImage: `url(${menuData.settings.backgroundImage || '/images/coffee-hero.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'

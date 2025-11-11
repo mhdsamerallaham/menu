@@ -11,6 +11,7 @@ export default function SettingsManager({ settings, onUpdate }) {
       ar: { enabled: false, label: 'العربية', flag: '🇸🇦' }
     },
     logo: '',
+    backgroundImage: '',
     tagline: {
       tr: '',
       en: '',
@@ -112,6 +113,17 @@ export default function SettingsManager({ settings, onUpdate }) {
             currentImage={formData.logo}
             onUpload={(imagePath) => setFormData({ ...formData, logo: imagePath })}
             label="Site Logosu"
+          />
+        </div>
+
+        {/* Background Image Settings */}
+        <div className="p-6 bg-gradient-to-br from-sage-50 to-sand-50 rounded-2xl border border-sage-200/50">
+          <h3 className="text-xl font-light text-charcoal mb-4 tracking-tight">Arka Plan Resmi</h3>
+          <p className="text-sm text-charcoal/60 mb-4">Ana sayfa ve admin panelinde görünecek arka plan resmi</p>
+          <ImageUploader
+            currentImage={formData.backgroundImage}
+            onUpload={(imagePath) => setFormData({ ...formData, backgroundImage: imagePath })}
+            label="Arka Plan Resmi"
           />
         </div>
 
