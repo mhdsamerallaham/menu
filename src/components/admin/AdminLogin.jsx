@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-export default function AdminLogin({ onLogin }) {
+export default function AdminLogin({ onLogin, settings }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -26,7 +26,7 @@ export default function AdminLogin({ onLogin }) {
       <div
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: 'url(/images/coffee-hero.png)',
+          backgroundImage: `url(${settings?.backgroundImage || '/images/coffee-hero.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
@@ -39,7 +39,7 @@ export default function AdminLogin({ onLogin }) {
         <div className="text-center mb-10">
           <div className="relative w-56 h-28 mx-auto mb-8">
             <Image
-              src="/images/logo.png"
+              src={settings?.logo || "/images/logo.png"}
               alt="Poyraz Kafe"
               fill
               className="object-contain"

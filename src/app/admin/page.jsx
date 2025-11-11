@@ -145,7 +145,7 @@ export default function AdminPage() {
   }
 
   if (!isLoggedIn) {
-    return <AdminLogin onLogin={handleLogin} />
+    return <AdminLogin onLogin={handleLogin} settings={menuData.settings} />
   }
 
   if (loading) {
@@ -181,7 +181,7 @@ export default function AdminPage() {
               <div className="flex items-center gap-3 md:gap-6 w-full md:w-auto">
                 <div className="relative w-32 h-16 md:w-40 md:h-20">
                   <Image
-                    src="/images/logo.png"
+                    src={menuData.settings.logo || "/images/logo.png"}
                     alt="Poyraz Kafe"
                     fill
                     className="object-contain"
