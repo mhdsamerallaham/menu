@@ -18,8 +18,20 @@ export default function MinimalMenuView({ products }) {
 
 function MinimalProductCard({ product }) {
   const [showModal, setShowModal] = useState(false)
-  const { currentLanguage } = useLanguage()
+  const { currentLanguage, settings } = useLanguage()
   const { addToCart } = useCart()
+
+  // Color mapping for add to cart button
+  const colorClasses = {
+    sage: 'bg-sage-600 hover:bg-sage-700',
+    sand: 'bg-sand-600 hover:bg-sand-700',
+    charcoal: 'bg-charcoal hover:bg-charcoal/90',
+    red: 'bg-red-600 hover:bg-red-700',
+    blue: 'bg-blue-600 hover:bg-blue-700',
+    green: 'bg-green-600 hover:bg-green-700'
+  }
+
+  const buttonColor = colorClasses[settings?.addToCartButtonColor] || colorClasses.sage
 
   const productName = product.translations?.[currentLanguage]?.name || product.name || ''
   const productDescription = product.translations?.[currentLanguage]?.description || product.description || ''
@@ -103,7 +115,7 @@ function MinimalProductCard({ product }) {
             {product.available && (
               <button
                 onClick={handleAddToCart}
-                className="bg-sage-600 hover:bg-sage-700 text-white p-2 rounded-lg transition-colors duration-200 text-sm"
+                className={`${buttonColor} text-white p-2 rounded-lg transition-colors duration-200 text-sm`}
                 title={t.addToCart}
               >
                 🛒

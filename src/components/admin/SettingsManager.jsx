@@ -13,6 +13,7 @@ export default function SettingsManager({ settings, onUpdate }) {
     logo: '',
     backgroundImage: '',
     menuTheme: 'classic',
+    addToCartButtonColor: 'sage',
     tagline: {
       tr: '',
       en: '',
@@ -258,6 +259,146 @@ export default function SettingsManager({ settings, onUpdate }) {
               <span className="text-base">ℹ️</span>
               <span>Seçtiğiniz tema, menü sayfasında ürünlerin nasıl görüneceğini belirler. Telefonda 2 sütun, bilgisayarda 4 sütun olarak görüntülenir.</span>
             </p>
+          </div>
+        </div>
+
+        {/* Add to Cart Button Color */}
+        <div className="p-6 bg-gradient-to-br from-sage-50 to-sand-50 rounded-2xl border border-sage-200/50">
+          <h3 className="text-xl font-light text-charcoal mb-4 tracking-tight">Sepete Ekle Butonu Rengi</h3>
+          <p className="text-sm text-charcoal/60 mb-6">Menü sayfasında &quot;Sepete Ekle&quot; butonunun rengini seçin</p>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {/* Sage - Default */}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, addToCartButtonColor: 'sage' })}
+              className={`relative p-4 rounded-xl border-2 transition-all duration-300 ${
+                formData.addToCartButtonColor === 'sage'
+                  ? 'border-sage-600 bg-sage-50 shadow-lg'
+                  : 'border-charcoal/10 bg-white hover:border-sage-400'
+              }`}
+            >
+              <div className="bg-gradient-to-r from-sage-600 to-sage-700 h-12 rounded-lg mb-3 flex items-center justify-center text-white text-2xl">
+                🛒
+              </div>
+              <p className="text-xs text-center text-charcoal font-medium">Sage</p>
+              <p className="text-xs text-center text-charcoal/50">Varsayılan</p>
+              {formData.addToCartButtonColor === 'sage' && (
+                <div className="absolute -top-2 -right-2 bg-sage-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm shadow-lg">
+                  ✓
+                </div>
+              )}
+            </button>
+
+            {/* Sand/Brown */}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, addToCartButtonColor: 'sand' })}
+              className={`relative p-4 rounded-xl border-2 transition-all duration-300 ${
+                formData.addToCartButtonColor === 'sand'
+                  ? 'border-sand-600 bg-sand-50 shadow-lg'
+                  : 'border-charcoal/10 bg-white hover:border-sand-400'
+              }`}
+            >
+              <div className="bg-gradient-to-r from-sand-600 to-sand-700 h-12 rounded-lg mb-3 flex items-center justify-center text-white text-2xl">
+                🛒
+              </div>
+              <p className="text-xs text-center text-charcoal font-medium">Kahverengi</p>
+              <p className="text-xs text-center text-charcoal/50">Sand</p>
+              {formData.addToCartButtonColor === 'sand' && (
+                <div className="absolute -top-2 -right-2 bg-sand-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm shadow-lg">
+                  ✓
+                </div>
+              )}
+            </button>
+
+            {/* Charcoal/Black */}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, addToCartButtonColor: 'charcoal' })}
+              className={`relative p-4 rounded-xl border-2 transition-all duration-300 ${
+                formData.addToCartButtonColor === 'charcoal'
+                  ? 'border-charcoal bg-charcoal/10 shadow-lg'
+                  : 'border-charcoal/10 bg-white hover:border-charcoal/40'
+              }`}
+            >
+              <div className="bg-gradient-to-r from-charcoal to-charcoal/90 h-12 rounded-lg mb-3 flex items-center justify-center text-white text-2xl">
+                🛒
+              </div>
+              <p className="text-xs text-center text-charcoal font-medium">Siyah</p>
+              <p className="text-xs text-center text-charcoal/50">Charcoal</p>
+              {formData.addToCartButtonColor === 'charcoal' && (
+                <div className="absolute -top-2 -right-2 bg-charcoal text-white rounded-full w-6 h-6 flex items-center justify-center text-sm shadow-lg">
+                  ✓
+                </div>
+              )}
+            </button>
+
+            {/* Red */}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, addToCartButtonColor: 'red' })}
+              className={`relative p-4 rounded-xl border-2 transition-all duration-300 ${
+                formData.addToCartButtonColor === 'red'
+                  ? 'border-red-600 bg-red-50 shadow-lg'
+                  : 'border-charcoal/10 bg-white hover:border-red-400'
+              }`}
+            >
+              <div className="bg-gradient-to-r from-red-600 to-red-700 h-12 rounded-lg mb-3 flex items-center justify-center text-white text-2xl">
+                🛒
+              </div>
+              <p className="text-xs text-center text-charcoal font-medium">Kırmızı</p>
+              <p className="text-xs text-center text-charcoal/50">Red</p>
+              {formData.addToCartButtonColor === 'red' && (
+                <div className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm shadow-lg">
+                  ✓
+                </div>
+              )}
+            </button>
+
+            {/* Blue */}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, addToCartButtonColor: 'blue' })}
+              className={`relative p-4 rounded-xl border-2 transition-all duration-300 ${
+                formData.addToCartButtonColor === 'blue'
+                  ? 'border-blue-600 bg-blue-50 shadow-lg'
+                  : 'border-charcoal/10 bg-white hover:border-blue-400'
+              }`}
+            >
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 h-12 rounded-lg mb-3 flex items-center justify-center text-white text-2xl">
+                🛒
+              </div>
+              <p className="text-xs text-center text-charcoal font-medium">Mavi</p>
+              <p className="text-xs text-center text-charcoal/50">Blue</p>
+              {formData.addToCartButtonColor === 'blue' && (
+                <div className="absolute -top-2 -right-2 bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm shadow-lg">
+                  ✓
+                </div>
+              )}
+            </button>
+
+            {/* Green */}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, addToCartButtonColor: 'green' })}
+              className={`relative p-4 rounded-xl border-2 transition-all duration-300 ${
+                formData.addToCartButtonColor === 'green'
+                  ? 'border-green-600 bg-green-50 shadow-lg'
+                  : 'border-charcoal/10 bg-white hover:border-green-400'
+              }`}
+            >
+              <div className="bg-gradient-to-r from-green-600 to-green-700 h-12 rounded-lg mb-3 flex items-center justify-center text-white text-2xl">
+                🛒
+              </div>
+              <p className="text-xs text-center text-charcoal font-medium">Yeşil</p>
+              <p className="text-xs text-center text-charcoal/50">Green</p>
+              {formData.addToCartButtonColor === 'green' && (
+                <div className="absolute -top-2 -right-2 bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm shadow-lg">
+                  ✓
+                </div>
+              )}
+            </button>
           </div>
         </div>
 

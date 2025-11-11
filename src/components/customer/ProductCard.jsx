@@ -8,8 +8,20 @@ import { useCart } from '@/contexts/CartContext'
 
 export default function ProductCard({ product, gridClass }) {
   const [showModal, setShowModal] = useState(false)
-  const { currentLanguage } = useLanguage()
+  const { currentLanguage, settings } = useLanguage()
   const { addToCart } = useCart()
+
+  // Color mapping for add to cart button
+  const colorClasses = {
+    sage: 'bg-sage-600/95 hover:bg-sage-700 border-sage-700',
+    sand: 'bg-sand-600/95 hover:bg-sand-700 border-sand-700',
+    charcoal: 'bg-charcoal/95 hover:bg-charcoal border-charcoal',
+    red: 'bg-red-600/95 hover:bg-red-700 border-red-700',
+    blue: 'bg-blue-600/95 hover:bg-blue-700 border-blue-700',
+    green: 'bg-green-600/95 hover:bg-green-700 border-green-700'
+  }
+
+  const buttonColor = colorClasses[settings?.addToCartButtonColor] || colorClasses.sage
 
   const productName = product.translations?.[currentLanguage]?.name || product.name || ''
   const productDescription = product.translations?.[currentLanguage]?.description || product.description || ''
@@ -113,7 +125,7 @@ export default function ProductCard({ product, gridClass }) {
 
           {product.available && (
             <button
-              className="bg-sage-600/95 backdrop-blur-sm text-white px-8 py-4 rounded-2xl font-light text-lg tracking-wide shadow-2xl hover:scale-110 hover:bg-sage-700 transition-all duration-300 pointer-events-auto border-2 border-sage-700"
+              className={`${buttonColor} backdrop-blur-sm text-white px-8 py-4 rounded-2xl font-light text-lg tracking-wide shadow-2xl hover:scale-110 transition-all duration-300 pointer-events-auto border-2`}
               onClick={handleAddToCart}
             >
               🛒 {t.addToCart}

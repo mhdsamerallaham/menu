@@ -18,8 +18,38 @@ export default function ModernMenuView({ products }) {
 
 function ModernProductCard({ product }) {
   const [showModal, setShowModal] = useState(false)
-  const { currentLanguage } = useLanguage()
+  const { currentLanguage, settings } = useLanguage()
   const { addToCart } = useCart()
+
+  // Color mapping for add to cart button
+  const colorClasses = {
+    sage: {
+      bg: 'bg-gradient-to-r from-sage-600 to-sage-700 hover:from-sage-700 hover:to-sage-800',
+      shadow: 'shadow-sage-600/20 hover:shadow-sage-600/30'
+    },
+    sand: {
+      bg: 'bg-gradient-to-r from-sand-600 to-sand-700 hover:from-sand-700 hover:to-sand-800',
+      shadow: 'shadow-sand-600/20 hover:shadow-sand-600/30'
+    },
+    charcoal: {
+      bg: 'bg-gradient-to-r from-charcoal to-charcoal/90 hover:from-charcoal/90 hover:to-charcoal',
+      shadow: 'shadow-charcoal/20 hover:shadow-charcoal/30'
+    },
+    red: {
+      bg: 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800',
+      shadow: 'shadow-red-600/20 hover:shadow-red-600/30'
+    },
+    blue: {
+      bg: 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800',
+      shadow: 'shadow-blue-600/20 hover:shadow-blue-600/30'
+    },
+    green: {
+      bg: 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800',
+      shadow: 'shadow-green-600/20 hover:shadow-green-600/30'
+    }
+  }
+
+  const buttonColor = colorClasses[settings?.addToCartButtonColor] || colorClasses.sage
 
   const productName = product.translations?.[currentLanguage]?.name || product.name || ''
   const productDescription = product.translations?.[currentLanguage]?.description || product.description || ''
@@ -111,7 +141,7 @@ function ModernProductCard({ product }) {
           {product.available && (
             <button
               onClick={handleAddToCart}
-              className="w-full bg-gradient-to-r from-sage-600 to-sage-700 hover:from-sage-700 hover:to-sage-800 text-white py-3 rounded-xl font-light text-sm transition-all duration-300 shadow-lg shadow-sage-600/20 hover:shadow-xl hover:shadow-sage-600/30 flex items-center justify-center gap-2"
+              className={`w-full ${buttonColor.bg} text-white py-3 rounded-xl font-light text-sm transition-all duration-300 shadow-lg ${buttonColor.shadow} hover:shadow-xl flex items-center justify-center gap-2`}
             >
               <span>🛒</span>
               <span>{t.addToCart}</span>
