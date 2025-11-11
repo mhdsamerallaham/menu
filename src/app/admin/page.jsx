@@ -21,6 +21,7 @@ export default function AdminPage() {
       },
       logo: '',
       backgroundImage: '',
+      menuTheme: 'classic',
       tagline: {
         tr: '',
         en: '',

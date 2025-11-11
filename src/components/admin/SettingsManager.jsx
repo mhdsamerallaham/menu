@@ -12,6 +12,7 @@ export default function SettingsManager({ settings, onUpdate }) {
     },
     logo: '',
     backgroundImage: '',
+    menuTheme: 'classic',
     tagline: {
       tr: '',
       en: '',
@@ -125,6 +126,139 @@ export default function SettingsManager({ settings, onUpdate }) {
             onUpload={(imagePath) => setFormData({ ...formData, backgroundImage: imagePath })}
             label="Arka Plan Resmi"
           />
+        </div>
+
+        {/* Menu Theme Selector */}
+        <div className="p-6 bg-gradient-to-br from-sand-50 to-sage-50 rounded-2xl border border-sand-200/50">
+          <h3 className="text-xl font-light text-charcoal mb-4 tracking-tight">Menü Teması</h3>
+          <p className="text-sm text-charcoal/60 mb-6">Menü sayfasında görünecek tasarım temasını seçin</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Classic Theme */}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, menuTheme: 'classic' })}
+              className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                formData.menuTheme === 'classic'
+                  ? 'border-sage-600 bg-sage-50 shadow-lg shadow-sage-600/20'
+                  : 'border-charcoal/10 bg-white hover:border-sage-400'
+              }`}
+            >
+              {/* Theme Preview Thumbnail */}
+              <div className="aspect-[4/3] bg-gradient-to-br from-pearl to-sand-50 rounded-xl mb-4 p-4 flex flex-col items-center justify-center border border-charcoal/10">
+                <div className="w-full space-y-2">
+                  {/* Simulated menu items in classic style */}
+                  <div className="bg-white/80 backdrop-blur-sm rounded-lg p-2 shadow-sm">
+                    <div className="h-2 bg-charcoal/20 rounded w-3/4"></div>
+                    <div className="h-1 bg-charcoal/10 rounded w-1/2 mt-1"></div>
+                  </div>
+                  <div className="bg-white/80 backdrop-blur-sm rounded-lg p-2 shadow-sm">
+                    <div className="h-2 bg-charcoal/20 rounded w-2/3"></div>
+                    <div className="h-1 bg-charcoal/10 rounded w-1/3 mt-1"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Theme Info */}
+              <div className="text-center">
+                <h4 className="font-medium text-charcoal mb-1">Klasik Tema</h4>
+                <p className="text-xs text-charcoal/60">Mevcut tasarım</p>
+              </div>
+
+              {/* Selected Badge */}
+              {formData.menuTheme === 'classic' && (
+                <div className="absolute -top-2 -right-2 bg-sage-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg shadow-lg">
+                  ✓
+                </div>
+              )}
+            </button>
+
+            {/* Minimal Theme */}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, menuTheme: 'minimal' })}
+              className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                formData.menuTheme === 'minimal'
+                  ? 'border-sage-600 bg-sage-50 shadow-lg shadow-sage-600/20'
+                  : 'border-charcoal/10 bg-white hover:border-sage-400'
+              }`}
+            >
+              {/* Theme Preview Thumbnail */}
+              <div className="aspect-[4/3] bg-white rounded-xl mb-4 p-4 flex flex-col items-center justify-center border border-charcoal/5">
+                <div className="w-full space-y-3">
+                  {/* Simulated menu items in minimal style */}
+                  <div className="border-b border-charcoal/10 pb-2">
+                    <div className="h-2 bg-charcoal/20 rounded w-2/3"></div>
+                    <div className="h-1 bg-charcoal/10 rounded w-1/4 mt-1"></div>
+                  </div>
+                  <div className="border-b border-charcoal/10 pb-2">
+                    <div className="h-2 bg-charcoal/20 rounded w-3/4"></div>
+                    <div className="h-1 bg-charcoal/10 rounded w-1/3 mt-1"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Theme Info */}
+              <div className="text-center">
+                <h4 className="font-medium text-charcoal mb-1">Minimal Tema</h4>
+                <p className="text-xs text-charcoal/60">Sade ve düzenli</p>
+              </div>
+
+              {/* Selected Badge */}
+              {formData.menuTheme === 'minimal' && (
+                <div className="absolute -top-2 -right-2 bg-sage-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg shadow-lg">
+                  ✓
+                </div>
+              )}
+            </button>
+
+            {/* Modern Theme */}
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, menuTheme: 'modern' })}
+              className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                formData.menuTheme === 'modern'
+                  ? 'border-sage-600 bg-sage-50 shadow-lg shadow-sage-600/20'
+                  : 'border-charcoal/10 bg-white hover:border-sage-400'
+              }`}
+            >
+              {/* Theme Preview Thumbnail */}
+              <div className="aspect-[4/3] bg-gradient-to-br from-charcoal/5 via-sage-50 to-sand-50 rounded-xl mb-4 p-4 flex flex-col items-center justify-center border border-charcoal/10">
+                <div className="w-full space-y-2">
+                  {/* Simulated menu items in modern style */}
+                  <div className="bg-gradient-to-r from-white to-sage-50 rounded-lg p-2 shadow-md border border-sage-200/30">
+                    <div className="h-2 bg-gradient-to-r from-charcoal/30 to-charcoal/20 rounded w-3/4"></div>
+                    <div className="h-1 bg-charcoal/10 rounded w-1/2 mt-1"></div>
+                  </div>
+                  <div className="bg-gradient-to-r from-white to-sand-50 rounded-lg p-2 shadow-md border border-sand-200/30">
+                    <div className="h-2 bg-gradient-to-r from-charcoal/30 to-charcoal/20 rounded w-2/3"></div>
+                    <div className="h-1 bg-charcoal/10 rounded w-1/3 mt-1"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Theme Info */}
+              <div className="text-center">
+                <h4 className="font-medium text-charcoal mb-1">Modern Tema</h4>
+                <p className="text-xs text-charcoal/60">Premium ve şık</p>
+              </div>
+
+              {/* Selected Badge */}
+              {formData.menuTheme === 'modern' && (
+                <div className="absolute -top-2 -right-2 bg-sage-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg shadow-lg">
+                  ✓
+                </div>
+              )}
+            </button>
+          </div>
+
+          {/* Info Note */}
+          <div className="mt-6 p-4 bg-blue-50 border border-blue-200/50 rounded-xl">
+            <p className="text-xs text-blue-800 flex items-center gap-2">
+              <span className="text-base">ℹ️</span>
+              <span>Seçtiğiniz tema, menü sayfasında ürünlerin nasıl görüneceğini belirler. Telefonda 2 sütun, bilgisayarda 4 sütun olarak görüntülenir.</span>
+            </p>
+          </div>
         </div>
 
         {/* WhatsApp Number */}

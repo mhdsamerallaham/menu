@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import Header from '@/components/customer/Header'
 import CategoryList from '@/components/customer/CategoryList'
-import ProductCard from '@/components/customer/ProductCard'
 import Footer from '@/components/shared/Footer'
+import ClassicMenuView from '@/components/customer/ClassicMenuView'
+import MinimalMenuView from '@/components/customer/MinimalMenuView'
+import ModernMenuView from '@/components/customer/ModernMenuView'
 
 export default function MenuPage() {
   const { currentLanguage, settings } = useLanguage()
@@ -87,31 +89,20 @@ export default function MenuPage() {
           onCategoryClick={setActiveCategory}
         />
         <main className="flex-grow max-w-[1400px] mx-auto px-6 lg:px-12 pb-8 w-full">
-          {/* Bento Grid Layout */}
-          <div className="grid grid-cols-12 gap-4 lg:gap-6 auto-rows-[280px]">
-            {sortedProducts.map((product, index) => {
-              // Bento grid pattern - different sizes for visual interest
-              const patterns = [
-                'col-span-12 md:col-span-6 lg:col-span-4 row-span-1', // normal
-                'col-span-12 md:col-span-6 lg:col-span-8 row-span-1', // wide
-                'col-span-12 md:col-span-6 lg:col-span-4 row-span-2', // tall
-                'col-span-12 md:col-span-6 lg:col-span-4 row-span-1', // normal
-                'col-span-12 md:col-span-12 lg:col-span-8 row-span-1', // extra wide
-                'col-span-12 md:col-span-6 lg:col-span-4 row-span-1', // normal
-              ]
-
-              const gridClass = patterns[index % patterns.length]
-
-              return (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  gridClass={gridClass}
-                />
-              )
-            })}
-          </div>
-          {sortedProducts.length === 0 && (
+          {/* Dynamic Menu View based on theme */}
+          {sortedProducts.length > 0 ? (
+            <>
+              {settings?.menuTheme === 'minimal' && (
+                <MinimalMenuView products={sortedProducts} />
+              )}
+              {settings?.menuTheme === 'modern' && (
+                <ModernMenuView products={sortedProducts} />
+              )}
+              {(!settings?.menuTheme || settings?.menuTheme === 'classic') && (
+                <ClassicMenuView products={sortedProducts} />
+              )}
+            </>
+          ) : (
             <div className="text-center py-24">
               <p
                 className="text-xl text-charcoal/40"
